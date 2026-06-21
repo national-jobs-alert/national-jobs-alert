@@ -1,0 +1,4 @@
+@echo off
+title National Jobs Alert - Local Website
+cd /d "%~dp0"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0start-server.ps1"

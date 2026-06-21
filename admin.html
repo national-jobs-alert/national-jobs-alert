@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Admin — National Jobs Alert</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #f0f4f8; color: #1a1a2e; line-height: 1.5; padding: 20px; }
+.wrap { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 24px; color: #0d7a3e; margin-bottom: 6px; }
+.sub { color: #666; font-size: 14px; margin-bottom: 24px; }
+.card { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+.card h2 { font-size: 16px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #e8f5ee; }
+label { display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px; margin-top: 12px; }
+label:first-of-type { margin-top: 0; }
+input, select, textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px;
+  font-size: 14px; font-family: inherit;
+}
+textarea { min-height: 80px; resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn {
+  display: inline-block; padding: 12px 20px; border: none; border-radius: 8px;
+  font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 16px; margin-right: 8px;
+}
+.btn-green { background: #0d7a3e; color: #fff; }
+.btn-green:hover { background: #085c2e; }
+.btn-gold { background: #e8a020; color: #fff; }
+.btn-outline { background: #fff; color: #0d7a3e; border: 2px solid #0d7a3e; }
+.btn-red { background: #fff; color: #d63031; border: 1px solid #d63031; padding: 4px 10px; font-size: 12px; margin: 0; }
+.job-row {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid #eee;
+}
+.job-row:last-child { border-bottom: none; }
+.job-title { font-weight: 600; font-size: 14px; }
+.job-meta { font-size: 12px; color: #888; margin-top: 4px; }
+.badge { display: inline-block; background: #d63031; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-left: 6px; }
+.empty { text-align: center; color: #999; padding: 30px; }
+.steps { background: #e8f5ee; border-radius: 8px; padding: 16px; font-size: 13px; margin-bottom: 20px; }
+.steps ol { margin-left: 18px; margin-top: 8px; }
+.steps li { margin-bottom: 6px; }
+.back { display: inline-block; margin-bottom: 16px; color: #0d7a3e; font-weight: 600; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+.toast {
+  position: fixed; bottom: 24px; right: 24px; background: #0d7a3e; color: #fff;
+  padding: 12px 20px; border-radius: 8px; font-size: 14px; display: none; z-index: 99;
+}
+@media (max-width: 600px) { .row2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="index.html" class="back">← Back to Website</a>
+  <h1>📋 Job Admin Panel</h1>
+  <p class="sub">Add and manage jobs without editing code. Export CSV → paste into Google Sheet.</p>
+
+  <div class="steps">
+    <strong>Daily workflow:</strong>
+    <ol>
+      <li>Add new jobs using the form below</li>
+      <li>Delete expired/old jobs from the list</li>
+      <li>Click <strong>Download CSV</strong></li>
+      <li>Open your Google Sheet → File → Import → Upload CSV → Replace sheet</li>
+      <li>Your live website updates automatically!</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>➕ Add New Job</h2>
+    <form id="jobForm">
+      <label>Job Title *</label>
+      <input type="text" id="title" required placeholder="e.g. Punjab Police Constable Jobs 2026">
+
+      <div class="row2">
+        <div>
+          <label>Organization *</label>
+          <input type="text" id="org" required placeholder="e.g. Punjab Police">
+        </div>
+        <div>
+          <label>Category *</label>
+          <select id="category" required>
+            <option value="Government">Government</option>
+            <option value="Army">Army</option>
+            <option value="Navy">Navy</option>
+            <option value="PAF">PAF</option>
+            <option value="PPSC">PPSC</option>
+            <option value="FPSC">FPSC</option>
+            <option value="NTS">NTS</option>
+            <option value="Private">Private</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div>
+          <label>City *</label>
+          <input type="text" id="city" required placeholder="e.g. Lahore or All Over Pakistan">
+        </div>
+        <div>
+          <label>Education *</label>
+          <input type="text" id="edu" required placeholder="e.g. Matric / Graduation">
+        </div>
+      </div>
+
+      <div class="row2">
+        <div>
+          <label>Last Date (Deadline) *</label>
+          <input type="text" id="deadline" required placeholder="e.g. July 15, 2026">
+        </div>
+        <div>
+          <label>Vacancies</label>
+          <input type="text" id="vacancies" placeholder="e.g. 500+">
+        </div>
+      </div>
+
+      <label>Description *</label>
+      <textarea id="desc" required placeholder="Short description of the job..."></textarea>
+
+      <label>Apply Link (URL) *</label>
+      <input type="url" id="applyLink" required placeholder="https://example.com/apply">
+
+      <label>
+        <input type="checkbox" id="isNew" checked> Mark as NEW (shows red badge on website)
+      </label>
+
+      <button type="submit" class="btn btn-green">Add Job</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>📂 Your Jobs (<span id="jobCount">0</span>)</h2>
+    <div id="jobList"><div class="empty">No jobs yet. Add your first job above.</div></div>
+    <button class="btn btn-gold" onclick="downloadCSV()">⬇ Download CSV for Google Sheet</button>
+    <button class="btn btn-outline" onclick="loadSample()">Load Sample Jobs</button>
+    <button class="btn btn-outline" onclick="clearAll()" style="color:#d63031;border-color:#d63031;">Clear All Jobs</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY = 'nja_admin_jobs';
+
+function getJobs() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch { return []; }
+}
+
+function saveJobs(jobs) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(jobs));
+  renderList();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2500);
+}
+
+function escapeCsv(val) {
+  const s = String(val || '');
+  if (s.includes(',') || s.includes('"') || s.includes('\n')) {
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  return s;
+}
+
+document.getElementById('jobForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const jobs = getJobs();
+  jobs.unshift({
+    id: Date.now(),
+    title: document.getElementById('title').value.trim(),
+    org: document.getElementById('org').value.trim(),
+    category: document.getElementById('category').value,
+    city: document.getElementById('city').value.trim(),
+    edu: document.getElementById('edu').value.trim(),
+    deadline: document.getElementById('deadline').value.trim(),
+    vacancies: document.getElementById('vacancies').value.trim() || 'Multiple',
+    desc: document.getElementById('desc').value.trim(),
+    applyLink: document.getElementById('applyLink').value.trim(),
+    isNew: document.getElementById('isNew').checked
+  });
+  saveJobs(jobs);
+  e.target.reset();
+  document.getElementById('isNew').checked = true;
+  showToast('Job added!');
+});
+
+function deleteJob(id) {
+  if (!confirm('Delete this job?')) return;
+  saveJobs(getJobs().filter(j => j.id !== id));
+  showToast('Job removed');
+}
+
+function renderList() {
+  const jobs = getJobs();
+  const list = document.getElementById('jobList');
+  document.getElementById('jobCount').textContent = jobs.length;
+
+  if (!jobs.length) {
+    list.innerHTML = '<div class="empty">No jobs yet. Add your first job above.</div>';
+    return;
+  }
+
+  list.innerHTML = jobs.map(j => `
+    <div class="job-row">
+      <div>
+        <div class="job-title">${j.title}${j.isNew ? '<span class="badge">NEW</span>' : ''}</div>
+        <div class="job-meta">${j.org} · ${j.category} · ${j.city} · Deadline: ${j.deadline}</div>
+      </div>
+      <button class="btn btn-red" onclick="deleteJob(${j.id})">Delete</button>
+    </div>
+  `).join('');
+}
+
+function downloadCSV() {
+  const jobs = getJobs();
+  if (!jobs.length) { alert('Add at least one job first.'); return; }
+
+  const header = 'id,title,organization,category,city,education,deadline,vacancies,description,applyLink,isNew,isScheme,schemeDesc';
+  const rows = jobs.map((j, i) => [
+    i + 1,
+    j.title, j.org, j.category, j.city, j.edu, j.deadline, j.vacancies,
+    j.desc, j.applyLink, j.isNew ? 'TRUE' : 'FALSE', 'FALSE', ''
+  ].map(escapeCsv).join(','));
+
+  const csv = [header, ...rows].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'jobs-' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+  showToast('CSV downloaded! Import into Google Sheet.');
+}
+
+function loadSample() {
+  if (getJobs().length && !confirm('Replace current jobs with 3 sample jobs?')) return;
+  saveJobs([
+    { id: 1, title: 'Punjab Police Constable Recruitment 2026', org: 'Punjab Police', category: 'Government', city: 'Punjab', edu: 'Matric / Intermediate', deadline: 'July 15, 2026', vacancies: '500+', desc: 'Punjab Police is hiring Male and Female Constables. Age 18-25.', applyLink: 'https://punjabpolice.gov.pk/', isNew: true },
+    { id: 2, title: 'Pakistan Navy Sailor Batch 2026', org: 'Pakistan Navy', category: 'Navy', city: 'All Over Pakistan', edu: 'Matric / Intermediate', deadline: 'August 1, 2026', vacancies: '1000+', desc: 'Pakistan Navy recruiting Sailors. Age 16-22.', applyLink: 'https://joinpaknavy.gov.pk/', isNew: true },
+    { id: 3, title: 'HBL Management Trainee Program', org: 'HBL', category: 'Private', city: 'All Over Pakistan', edu: 'Graduation / MBA', deadline: 'July 20, 2026', vacancies: '300', desc: 'HBL Management Trainee for fresh graduates.', applyLink: 'https://www.hbl.com/', isNew: false }
+  ]);
+  showToast('Sample jobs loaded');
+}
+
+function clearAll() {
+  if (!confirm('Delete ALL jobs? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  renderList();
+  showToast('All jobs cleared');
+}
+
+renderList();
+</script>
+</body>
+</html>

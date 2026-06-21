@@ -1,0 +1,188 @@
+================================================================================
+  YOUR GOOGLE SHEET IS NOW LINKED TO YOUR WEBSITE
+================================================================================
+
+Your sheet:
+https://docs.google.com/spreadsheets/d/1o7r2FVF5pvXFKKXa82yJKPZ7KyxcMCgMMtm86RR70hA/edit
+
+Your website folder:
+C:\Users\UUser\Pictures\National Jobs Alert\
+
+
+================================================================================
+  WHY CHANGES DID NOT SHOW BEFORE (IMPORTANT!)
+================================================================================
+
+If you double-click index.html, Windows opens it as a "file" (file:///...).
+Browsers BLOCK Google Sheet loading from file pages for security.
+
+So your sheet was fine — the website was opened the wrong way.
+
+FIX: Always open the website using START-WEBSITE.bat (see Step 4 below)
+     OR upload to free hosting (Netlify) for your real shop website.
+
+
+================================================================================
+  STEP 1 — YOUR SHEET IS ALREADY CONNECTED (DONE FOR YOU)
+================================================================================
+
+I linked your sheet in script.js:
+
+  Sheet ID: 1o7r2FVF5pvXFKKXa82yJKPZ7KyxcMCgMMtm86RR70hA
+
+You do not need to edit any code for normal daily updates.
+
+
+================================================================================
+  STEP 2 — MAKE SURE SHEET IS PUBLIC (DO THIS ONCE)
+================================================================================
+
+1. Open your sheet:
+   https://docs.google.com/spreadsheets/d/1o7r2FVF5pvXFKKXa82yJKPZ7KyxcMCgMMtm86RR70hA/edit
+
+2. Click the green "Share" button (top right)
+
+3. Under "General access" choose:
+   "Anyone with the link" → Role: Viewer
+
+4. Click Done
+
+(This lets your website read jobs. Visitors cannot edit your sheet.)
+
+
+================================================================================
+  STEP 3 — CORRECT COLUMN HEADERS (ROW 1)
+================================================================================
+
+Row 1 must have these EXACT headings (you already have them):
+
+  A: id
+  B: title
+  C: organization
+  D: category
+  E: city
+  F: education
+  G: deadline
+  H: vacancies
+  I: description
+  J: applyLink
+  K: isNew
+  L: isScheme
+  M: schemeDesc
+
+Each job = one row starting from row 2.
+
+Category (column D) must be one of:
+  Government | Army | Navy | PAF | PPSC | FPSC | NTS | Private
+
+isNew (column K): type TRUE for new jobs, FALSE for older ones
+
+
+================================================================================
+  STEP 4 — VIEW YOUR WEBSITE THE CORRECT WAY (ON YOUR PC)
+================================================================================
+
+1. Go to folder: C:\Users\UUser\Pictures\National Jobs Alert\
+
+2. Double-click: START-WEBSITE.bat
+
+3. Browser opens at http://localhost:8080
+
+4. On the right sidebar you should see GREEN dot:
+   "Live — X jobs from Google Sheet"
+
+5. When you change the sheet → press F5 in browser → jobs update!
+
+
+================================================================================
+  STEP 5 — DAILY JOB UPDATE ROUTINE (2–5 MINUTES)
+================================================================================
+
+Every day when you have new jobs:
+
+  ADD new job:
+    1. Open your Google Sheet
+    2. Go to the last empty row
+    3. Fill all columns (title, organization, category, city, etc.)
+    4. Set isNew = TRUE
+    5. Sheet saves automatically
+
+  REMOVE old/expired job:
+    1. Click the row number on the left
+    2. Right-click → Delete row
+
+  SEE changes on website:
+    1. Open your website (START-WEBSITE.bat or your live URL)
+    2. Press F5 to refresh the page
+    3. New jobs appear!
+
+
+================================================================================
+  STEP 6 — PUT WEBSITE ONLINE FOR YOUR SHOP (RECOMMENDED)
+================================================================================
+
+For customers to visit your jobs site, upload to free hosting:
+
+  NETLIFY (easiest — free):
+    1. Go to https://app.netlify.com/drop
+    2. Drag the whole folder "National Jobs Alert" onto the page
+    3. Netlify gives you a free link like: https://yourname.netlify.app
+    4. Share that link with customers!
+
+  After upload:
+    - Edit Google Sheet only
+    - Website updates when visitors refresh (F5)
+    - No need to re-upload files for job changes
+
+
+================================================================================
+  STEP 7 — TEST THAT IT WORKS
+================================================================================
+
+Try this test right now:
+
+  1. Open your Google Sheet
+  2. Add a test job in a new row, e.g.:
+     title: TEST JOB - Delete Me
+     organization: Test Org
+     category: Government
+     city: Lahore
+     education: Matric
+     deadline: Dec 31, 2026
+     isNew: TRUE
+  3. Run START-WEBSITE.bat
+  4. Press F5 in browser
+  5. You should see "TEST JOB - Delete Me" on the website
+  6. Delete that test row from the sheet when done
+
+
+================================================================================
+  TROUBLESHOOTING
+================================================================================
+
+Problem: Sidebar says "Sheet not reachable — showing built-in jobs"
+  → Check Step 2 (Share → Anyone with link → Viewer)
+  → Use START-WEBSITE.bat, not double-click index.html
+
+Problem: Some jobs missing
+  → Row must have a title in column B
+  → Do not leave title empty
+
+Problem: Job shows wrong info
+  → Check you did not skip columns (each column must align with header)
+
+Problem: Website still shows old jobs after sheet change
+  → Press F5 (hard refresh: Ctrl+F5)
+  → Make sure you edited the correct sheet tab (first tab, gid=0)
+
+
+================================================================================
+  QUICK REFERENCE
+================================================================================
+
+  Edit jobs:     Your Google Sheet (link above)
+  View locally:  Double-click START-WEBSITE.bat
+  Admin backup:  admin.html (if sheet is down)
+  Your sheet link on website: Sidebar → "Open Your Google Sheet"
+
+================================================================================

@@ -1,0 +1,118 @@
+================================================================================
+  NATIONAL JOBS ALERT — How to Update Jobs Daily (No Coding Required!)
+================================================================================
+
+You have TWO easy ways to update jobs. Pick ONE method and use it every day.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  METHOD 1 — GOOGLE SHEET (RECOMMENDED — update from phone or computer)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Your website reads jobs from a Google Sheet automatically. You only edit the
+sheet — the website updates itself when visitors refresh the page.
+
+STEP 1 — Create your jobs sheet (one time only)
+  1. Go to https://sheets.google.com
+  2. Click "Blank" to create a new spreadsheet
+  3. Name it: National Jobs Alert Jobs
+  4. In Row 1, type these EXACT column headings (one per cell):
+
+     A: id
+     B: title
+     C: organization
+     D: category
+     E: city
+     F: education
+     G: deadline
+     H: vacancies
+     I: description
+     J: applyLink
+     K: isNew
+     L: isScheme
+     M: schemeDesc
+
+  5. Copy sample rows from jobs-template.csv (included in this folder)
+
+STEP 2 — Make the sheet public (one time only)
+  1. Click File → Share → Share with others
+  2. Change access to: "Anyone with the link" → Viewer
+  3. Click Done
+
+  OR: File → Share → Publish to web → choose the sheet → CSV → Publish
+
+STEP 3 — Connect sheet to your website (one time only)
+  1. Open your Google Sheet in the browser
+  2. Look at the URL. It looks like:
+     https://docs.google.com/spreadsheets/d/XXXXXXXXXXXXXX/edit
+  3. Copy the long code between /d/ and /edit — that is your SHEET_ID
+  4. Open script.js in Notepad
+  5. Find this line near the top:
+     const SHEET_ID = 'YOUR_SHEET_ID_HERE';
+  6. Paste your Sheet ID between the quotes. Save the file.
+
+STEP 4 — Daily job updates (takes 2–5 minutes!)
+  1. Open your Google Sheet
+  2. To ADD a new job: go to the last row and fill in the columns
+  3. To REMOVE an old job: delete that entire row
+  4. For isNew column: type TRUE for new jobs, FALSE for older ones
+  5. Save happens automatically in Google Sheets
+  6. Visitors see new jobs when they refresh your website
+
+  CATEGORY options (column D): Government, Army, Navy, PAF, PPSC, FPSC, NTS, Private
+
+  TIP: Keep only active jobs (last 30–60 days). Delete expired jobs regularly.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  METHOD 2 — ADMIN PAGE (easiest if you don't use Google Sheets yet)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Open admin.html in your browser (double-click the file).
+
+  • Fill the form → click "Add Job"
+  • To remove a job → click Delete on that row
+  • Click "Download CSV" → import that file into Google Sheet
+    (File → Import → Upload → Replace current sheet)
+
+Use admin.html to prepare jobs, then paste them into Google Sheet once a day.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PUT YOUR WEBSITE ONLINE (required for Google Sheet to work)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Opening index.html by double-clicking works for testing, but Google Sheet
+connection works best when the site is hosted online. Free options:
+
+  • Netlify Drop — drag your folder to https://app.netlify.com/drop
+  • GitHub Pages — upload files to a free GitHub repository
+  • Your web hosting cPanel — upload all files to public_html
+
+Upload ALL files: index.html, style.css, script.js, admin.html, images, etc.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  QUICK EXAMPLE — Adding one job in Google Sheet
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  id | title                              | organization | category   | city   | ...
+  101| Punjab Police Constable Jobs 2026   | Punjab Police| Government | Punjab | ...
+  
+  education: Matric / Intermediate
+  deadline: July 15, 2026
+  vacancies: 500+
+  description: Punjab Police is hiring constables...
+  applyLink: https://punjabpolice.gov.pk/
+  isNew: TRUE
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  NEED HELP?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Sidebar on website shows: "Connected — X jobs loaded" = working!
+  If it says "using built-in data" = check SHEET_ID in script.js
+  If sheet won't connect = make sure sheet is shared as "Anyone with link"
+
+================================================================================
