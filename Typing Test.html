@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Jobs Alert — Free Online Typing Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;900&family=Lora:ital@0;1&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --green: #0d7a3e;
+            --green-dark: #085c2e;
+            --green-light: #e8f5ee;
+            --accent: #e8a020;
+            --accent-light: #fef3dc;
+            --red: #d63031;
+            --text-dark: #1a1a2e;
+            --text-muted: #666666;
+            --border: #cbd5e1;
+            --bg-color: #e6fbff;
+            --card-bg: #ffffff;
+            --primary-blue: #00bcd4;
+            --primary-green: #0d7a3e;
+            --primary-red: #d63031;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+            --radius-sm: 6px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(13, 122, 62, 0.05) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(232, 160, 32, 0.05) 0px, transparent 50%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            line-height: 1.6;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* ---- HEADER (Matching index.html) ---- */
+        .header { 
+            background: #ffffff; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        .header-inner { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 14px 16px; 
+            max-width: 1200px; 
+            width: 100%;
+            margin: 0 auto; 
+            gap: 20px;
+            box-sizing: border-box;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { 
+            background: var(--green); 
+            color: #fff; 
+            font-weight: 800; 
+            font-size: 15px; 
+            width: 44px; 
+            height: 44px; 
+            border-radius: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            letter-spacing: -1px; 
+            flex-shrink: 0; 
+            box-shadow: 0 3px 10px rgba(13,122,62,.25); 
+        }
+        .logo-main { display: block; font-weight: 800; font-size: 17px; color: var(--green); }
+        .logo-sub { display: block; font-size: 11px; color: var(--text-muted); }
+        .nav { display: flex; gap: 6px; }
+        .nav-link { 
+            padding: 8px 14px; 
+            border-radius: var(--radius-sm); 
+            font-size: 14px; 
+            font-weight: 500; 
+            color: var(--text-dark); 
+            transition: all .2s; 
+        }
+        .nav-link:hover, .nav-link.active { 
+            background: var(--green-light); 
+            color: var(--green); 
+        }
+
+        /* ---- MAIN CONTAINER & GRID ---- */
+        .app-container {
+            max-width: 1160px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* ---- CORE TYPING CARD ---- */
+        .wrapper {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(13, 122, 62, 0.1);
+            width: 100%;
+            min-width: 0;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--green);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .tagline {
+            text-align: center;
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        /* ---- LANGUAGE SELECTOR PANEL ---- */
+        .lang-selector-panel {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .lang-tab {
+            background: #f1f5f9;
+            color: #555;
+            border: 2px solid #e2e8f0;
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-tab.active {
+            background: var(--green);
+            color: #fff;
+            border-color: var(--green);
+            box-shadow: 0 4px 12px rgba(13, 122, 62, 0.2);
+        }
+
+        /* ---- MODE TOGGLE PANEL ---- */
+        .mode-toggle-panel {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .mode-tab {
+            background: #f8fafc;
+            color: var(--text-muted);
+            border: 1px solid #cbd5e1;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mode-tab.active {
+            background: var(--text-dark);
+            color: #fff;
+            border-color: var(--text-dark);
+        }
+
+        /* ---- DASHBOARD GRID ---- */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 120px 1fr;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        /* Left Side: Time Selectors */
+        .time-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .time-btn {
+            background: #f8fafc;
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+            padding: 8px 5px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .time-btn.active {
+            background: var(--green);
+            color: #fff;
+            border-color: var(--green);
+            box-shadow: 0 3px 8px rgba(13, 122, 62, 0.2);
+        }
+        .time-btn:hover { transform: translateY(-1px); }
+
+        /* Center Ring Progress Circle */
+        .timer-circle-container {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .timer-svg {
+            transform: rotate(-90deg);
+            width: 110px;
+            height: 110px;
+        }
+
+        .timer-svg circle {
+            fill: none;
+            stroke-width: 6;
+            stroke-linecap: round;
+        }
+
+        .circle-bg { stroke: #e2e8f0; }
+        .circle-progress {
+            stroke: url(#gradientColors);
+            stroke-dasharray: 283; 
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s linear;
+        }
+
+        .timer-text-box { position: absolute; text-align: center; }
+        .timer-value { font-size: 24px; font-weight: 900; color: var(--text-dark); line-height: 1; }
+        .timer-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+        /* Right Side: Metrics Score Cards */
+        .metrics-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .metric-card {
+            background: #f8fafc;
+            padding: 6px 12px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #cbd5e1;
+            border-top: 1px solid #f1f5f9;
+            border-right: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .metric-card.wpm-card { border-left-color: var(--accent); }
+        .metric-card.cpm-card { border-left-color: var(--green); }
+        .metric-card.acc-card { border-left-color: var(--red); }
+
+        .metric-num { font-size: 16px; font-weight: 800; color: var(--text-dark); }
+        .metric-title { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+
+        /* ---- URDU PREVIEW BAR ---- */
+        .urdu-preview-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--accent-light);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 6px 14px;
+            margin-bottom: 14px;
+            direction: rtl;
+        }
+        .preview-label {
+            font-size: 12px;
+            font-weight: 800;
+            color: #c8880f;
+        }
+        .preview-word {
+            font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* ---- TYPING CONTAINER FRAME ---- */
+        .typing-container {
+            position: relative;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 44px 0px; /* Removed side paddings to allow perfect full width scrolling content */
+            box-shadow: 0 3px 8px rgba(0, 173, 255, 1);
+            border: 2px solid var(--green-light);
+            overflow: hidden;
+            cursor: text;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Tiny "Start typing" Alert Popup */
+        .start-popup-tooltip {
+            position: absolute;
+            background: #0095ff;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 5px 12px;
+            border-radius: 4px;
+            top: 10px;
+            left: 50%; /* Positioned initially near the center line */
+            transform: translateX(-50%);
+            box-shadow: 0 4px 10px rgba(9,175,255,1);
+            z-index: 105;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .start-popup-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px 5px 0;
+            border-style: solid;
+            border-color: #0095ff transparent;
+            display: block;
+            width: 0;
+        }
+
+        /* Mechanical text layout */
+        #text-display {
+            font-family: 'Lora', serif;
+            font-size: 40px;
+            color: #1e293b; 
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            display: inline-block;
+            transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+            width: auto;
+            position: relative;
+        }
+
+        /* Char highlighted layouts */
+        .char {
+            position: relative;
+            display: inline-block;
+            color: #1e293b; 
+        }
+
+        .char.space-char { padding: 0 3px; }
+        .char.correct { color: #085c2e; font-weight: normal; } 
+        .char.incorrect {
+            color: var(--red);
+            background: rgba(214, 48, 49, 0.1);
+            border-radius: 3px;
+        }
+
+        .char.current {
+            color: #000;
+            background-color: transparent;
+            border-left: 3px solid #00bcd4; 
+            animation: cursorBlink 0.8s infinite;
+        }
+
+        @keyframes cursorBlink { 50% { border-left-color: transparent; } }
+
+        /* Idle state blur */
+        .typing-container.idle #text-display { opacity: 0.6; }
+        .typing-container.idle .char.current { animation: none; border-left-color: var(--red); }
+
+        #hidden-input { position: absolute; opacity: 0; z-index: -10; }
+
+        .control-section { display: flex; justify-content: center; margin-top: 20px; }
+        .restart-btn {
+            background: var(--text-dark);
+            color: #fff;
+            border: none;
+            padding: 10px 28px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .restart-btn:hover { 
+            background: var(--green); 
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(13, 122, 62, 0.2);
+        }
+
+        /* ---- URDU STYLING TARGET OVERRIDES ---- */
+        .urdu-text {
+            font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Lora', serif !important;
+            font-size: 44px !important;
+            line-height: 2 !important;
+            letter-spacing: 0px !important;
+            color: #000000 !important;
+        }
+        .urdu-text .word {
+            display: inline-block;
+            margin: 0 4px;
+            color: #000000;
+        }
+        .urdu-text .word.correct {
+            color: #cbd5e1 !important;
+            font-weight: normal;
+        }
+        .urdu-text .word.incorrect {
+            color: var(--red) !important;
+            text-decoration: line-through;
+            background: rgba(214, 48, 49, 0.08);
+            border-radius: 4px;
+        }
+        .urdu-text .word.current {
+            color: #000 !important;
+            background-color: transparent;
+            border-bottom: 3px solid #00bcd4;
+            border-left: none;
+            animation: urduWordHighlight 1.5s infinite alternate;
+        }
+        @keyframes urduWordHighlight {
+            0% { background-color: rgba(0, 188, 212, 0.05); }
+            100% { background-color: rgba(0, 188, 212, 0.15); }
+        }
+
+        /* ---- TIPS SIDEBAR COLUMNS ---- */
+        .tips-sidebar {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(13, 122, 62, 0.1);
+            width: 100%;
+            min-width: 0;
+            margin-top: 8px;
+        }
+
+        .tips-sidebar h3 {
+            margin-top: 0;
+            color: var(--green);
+            font-weight: 800;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid var(--green-light);
+            padding-bottom: 8px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tip-item-side {
+            display: flex;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .tip-num {
+            background: var(--green-light);
+            color: var(--green);
+            font-weight: 800;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 12px;
+        }
+
+        .tip-body strong {
+            display: block;
+            font-size: 13px;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+        .tip-body p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* ---- RESULT MODAL OVERLAY ---- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+        .modal-card {
+            background: #fff;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 480px;
+            padding: 32px;
+            box-shadow: 0 20px 48px rgba(0,0,0,0.15);
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(13,122,62,0.1);
+        }
+
+        .modal-overlay.open .modal-card { transform: scale(1); }
+        .modal-headline { font-size: 22px; font-weight: 800; margin: 8px 0; text-transform: uppercase; }
+        .modal-headline.rank-pro { color: var(--green); }
+        .modal-headline.rank-avg { color: var(--accent); }
+        .modal-headline.rank-low { color: var(--red); }
+
+        .modal-score-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .modal-score-box {
+            background: #f8fafc;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .modal-score-label { font-size: 10px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+        .modal-score-num { font-size: 26px; font-weight: 800; color: var(--text-dark); margin-top: 4px; }
+
+        .suggestion-box {
+            background: var(--green-light);
+            border-left: 4px solid var(--green);
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #1e293b;
+            line-height: 1.5;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .modal-close-btn {
+            background: var(--green);
+            color: #fff;
+            border: none;
+            padding: 12px 36px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(13, 122, 62, 0.25);
+            transition: all 0.2s;
+        }
+        .modal-close-btn:hover {
+            background: var(--green-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ---- Urdu fonts ---- */
+        @font-face {
+            font-family: 'Jameel Noori Nastaleeq';
+            src: local('Jameel Noori Nastaleeq'), url('fonts/JameelNooriNastaleeq.ttf') format('truetype');
+            font-display: swap;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">NJA</div>
+            <div class="logo-text">
+                <span class="logo-main">National Jobs Alert</span>
+                <span class="logo-sub">Pakistan's Trusted Job Portal</span>
+            </div>
+        </a>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#jobs-section" class="nav-link">Jobs</a>
+            <a href="Typing Test.html" class="nav-link active">Typing Test</a>
+        </nav>
+    </div>
+</header>
+
+<div class="app-container">
+    <div class="main-layout">
+        <div class="wrapper">
+            <div class="subtitle">FREE ASSESSMENT</div>
+            <h1 class="main-title">Online Typing Speed Test</h1>
+            <p class="tagline">Evaluate and improve your WPM (Words Per Minute) speed for local job tests</p>
+
+            <div class="lang-selector-panel">
+                <button class="lang-tab active" id="lang-en" onclick="setLanguage('en')">🇬🇧 English Typing</button>
+                <button class="lang-tab" id="lang-ur" onclick="setLanguage('ur')">🇵🇰 Urdu Typing (اردو)</button>
+            </div>
+
+            <div class="mode-toggle-panel" id="mode-toggle-panel">
+                <button class="mode-tab active" id="tab-with-space">With Space Mode</button>
+                <button class="mode-tab" id="tab-no-space">Without Space Mode</button>
+            </div>
+
+            <div id="urdu-preview-bar" class="urdu-preview-bar" style="display: none;">
+                <span class="preview-label">ٹائپ کیا جانے والا لفظ:</span>
+                <span id="urdu-preview-word" class="preview-word">مشق شروع کریں...</span>
+            </div>
+
+            <div class="dashboard">
+                <div class="time-panel">
+                    <button class="time-btn active" data-time="60">1 Min Test</button>
+                    <button class="time-btn" data-time="120">2 Min Test</button>
+                    <button class="time-btn" data-time="180">3 Min Test</button>
+                    <button class="time-btn" data-time="300">5 Min Test</button>
+                </div>
+
+                <div class="timer-circle-container">
+                    <svg class="timer-svg">
+                        <defs>
+                            <linearGradient id="gradientColors" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0d7a3e" />
+                                <stop offset="100%" stop-color="#e8a020" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="circle-bg" cx="55" cy="55" r="45"></circle>
+                        <circle class="circle-progress" id="progress-bar" cx="55" cy="55" r="45"></circle>
+                    </svg>
+                    <div class="timer-text-box">
+                        <div id="countdown" class="timer-value">60</div>
+                        <div class="timer-label">seconds</div>
+                    </div>
+                </div>
+
+                <div class="metrics-panel">
+                    <div class="metric-card wpm-card">
+                        <span class="metric-title">WPM</span>
+                        <span id="wpm-val" class="metric-num">0</span>
+                    </div>
+                    <div class="metric-card cpm-card">
+                        <span class="metric-title">Chars/Min</span>
+                        <span id="cpm-val" class="metric-num">0</span>
+                    </div>
+                    <div class="metric-card acc-card">
+                        <span class="metric-title">% Accuracy</span>
+                        <span id="acc-val" class="metric-num">100%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="typing-container" id="type-box-click" onclick="focusTyping()">
+                <div class="start-popup-tooltip" id="start-typing-popup">Start typing</div>
+                <div id="text-display">Loading test paragraphs...</div>
+            </div>
+
+            <input type="text" id="hidden-input" autocomplete="off">
+
+            <div class="control-section">
+                <button class="restart-btn" id="btn-reset">Reset Test</button>
+            </div>
+        </div>
+
+        <div class="tips-sidebar">
+            <h3>💡 Pro Tips to Increase Typing Speed</h3>
+            <div class="tips-grid">
+                <div class="tip-item-side">
+                    <div class="tip-num">1</div>
+                    <div class="tip-body">
+                        <strong>Maintain Home Row discipline</strong>
+                        <p>Keep fingers resting lightly on ASDF (left hand) and JKL; (right hand) keys. Return home blindly.</p>
+                    </div>
+                </div>
+                <div class="tip-item-side">
+                    <div class="tip-num">2</div>
+                    <div class="tip-body">
+                        <strong>Do not look down at keyboard</strong>
+                        <p>Keep your eyes fixed on the screen. Let your fingers build strong muscle memory naturally over time.</p>
+                    </div>
+                </div>
+                <div class="tip-item-side">
+                    <div class="tip-num">3</div>
+                    <div class="tip-body">
+                        <strong>Focus on Accuracy first</strong>
+                        <p>Speed is a direct byproduct of accuracy. Slow down to stay above 95% accuracy, then push your speed limits.</p>
+                    </div>
+                </div>
+                <div class="tip-item-side">
+                    <div class="tip-num">4</div>
+                    <div class="tip-body">
+                        <strong>Look 1-2 words ahead</strong>
+                        <p>Read ahead of the word you are typing. This helps your fingers plan motions and execute them fluidly without pause.</p>
+                    </div>
+                </div>
+                <div class="tip-item-side">
+                    <div class="tip-num">5</div>
+                    <div class="tip-body">
+                        <strong>Phonetic Urdu Layout</strong>
+                        <p>For Urdu, standard phonetic keyboards map similar sounds (e.g. 'A' for Alif, 'B' for Bay). Practice this layout for local tests.</p>
+                    </div>
+                </div>
+                <div class="tip-item-side">
+                    <div class="tip-num">6</div>
+                    <div class="tip-body">
+                        <strong>Govt Exam Standards</strong>
+                        <p>Junior Clerks require 30 WPM minimum. Data Entry Operators require 40 WPM. Stenographers need 50+ WPM speed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="result-modal">
+    <div class="modal-card">
+        <div id="modal-title" class="modal-headline">Test Complete!</div>
+        <p style="color: #666; font-size: 13px; margin-bottom: 12px;">Here is your typing test performance summary:</p>
+        
+        <div class="modal-score-grid">
+            <div class="modal-score-box">
+                <div class="modal-score-label">Words Per Minute</div>
+                <div id="modal-wpm" class="modal-score-num">0</div>
+            </div>
+            <div class="modal-score-box">
+                <div class="modal-score-label">Accuracy Score</div>
+                <div id="modal-acc" class="modal-score-num">100%</div>
+            </div>
+        </div>
+
+        <div class="suggestion-box" id="modal-suggestion">Loading tips...</div>
+        <button class="modal-close-btn" id="modal-close">Practice Again</button>
+    </div>
+</div>
+
+<script>
+    // --- 18 English Paragraphs ---
+    const wordBankEn = [
+        "Job hunting in the modern era requires a diverse set of skills, but one of the most consistently valuable assets is typing speed. Whether you are applying for a government job, a corporate administrative role, or a software engineering position, being able to quickly and accurately input data is essential. Many government organizations in Pakistan, such as the Federal Public Service Commission and the Punjab Public Service Commission, conduct mandatory typing tests for roles like Junior Clerk, Data Entry Operator, and Stenotypist. These tests typically require a minimum speed of thirty to forty words per minute, combined with an accuracy level of ninety percent or higher. To achieve this, candidates must practice daily, maintaining proper hand posture and keeping their fingers on the home row keys. Regular practice not only increases speed but also reduces muscular strain and improves cognitive coordination during long hours of work.",
+        "Technology has transformed the global job market, creating new opportunities while redefining traditional career paths. Today, digital literacy is no longer an optional skill; it is a fundamental requirement for almost every professional role. From cloud computing and artificial intelligence to basic office automation, employees must adapt to software systems that streamline operations and increase productivity. For young graduates in Pakistan, mastering these tools is the key to unlocking high-paying careers in both local and international markets. In addition to technical expertise, soft skills like communication, time management, and problem-solving are highly sought after by employers. Combining a strong technical foundation with a professional work ethic ensures long-term career growth and stability. As industries continue to evolve, continuous learning and upskilling remain the best strategies for staying competitive in a rapidly changing employment landscape.",
+        "Developing a steady typing rhythm is far more important than typing fast with errors. When people focus solely on speed, they tend to make frequent mistakes, which ultimately slows them down because they have to press the backspace key and correct their work. A professional typist knows that accuracy is the foundation of speed. By focusing on typing each character correctly, muscle memory is built naturally, and speed will follow as a direct result. Furthermore, maintaining a proper typing posture is crucial for preventing long-term physical issues like repetitive strain injury or carpal tunnel syndrome. Keep your wrists slightly elevated, your back straight, and your elbows bent at a ninety-degree angle. Your eyes should be focused on the screen, scanning one or two words ahead of what you are currently typing, rather than looking down at the keyboard. This allows for a smoother transition between words and helps maintain a continuous flow of typing.",
+        "The civil services and government departments in Pakistan offer prestigious and stable career paths for thousands of citizens. Every year, departments like the Pakistan Army, Navy, Air Force, and various ministries announce vacancies for administrative, technical, and support staff. Landing these jobs requires passing rigorous selection processes, which often include written academic exams, physical endurance tests, and practical skill evaluations. For administrative and clerical posts, the typing test is a critical screening phase that eliminates many candidates. Practicing typing under timed conditions is the best way to prepare for the high-pressure environment of the official test center. Candidates who use dedicated typing software, track their progress, and analyze their performance are much more likely to succeed. A high typing speed, paired with strong computer applications knowledge, makes an applicant stand out during the final interviews.",
+        "Online freelance work has emerged as a major source of income for thousands of skilled Pakistani youth. Platforms like Upwork, Fiverr, and Freelancer allow talented individuals to offer services in graphic design, web development, content writing, and digital marketing to clients worldwide. Freelancing offers the flexibility of working from home and choosing projects that align with one's expertise. However, it also requires high self-discipline, excellent communication skills, and professional delivery. Since most freelance work involves text communication and digital document creation, possessing a fast typing speed is a critical productivity booster. Writers who can type fast can produce more articles per day, while developers can write clean code much quicker. For anyone looking to start a freelancing career, investing time in mastering keyboard typing and basic business English communication is a smart first step that yields high returns.",
+        "Modern business communication is heavily dependent on written correspondence, particularly emails, reports, and digital messages. In a fast-paced work environment, employees must convey information clearly, concisely, and promptly. A slow typing speed can become a significant bottleneck, causing tasks to pile up and reducing overall efficiency. When you can type as fast as you think, writing reports and replying to urgent client emails becomes an effortless process. This allows you to focus more energy on the creative and analytical aspects of your job rather than the physical act of typing. Employers highly value administrative assistants, managers, and project coordinators who can handle communication tasks swiftly. Consistent practice, coupled with learning keyboard shortcuts, can easily increase your typing speed by twenty to thirty words per minute, saving you hours of valuable work time every single week.",
+        "Understanding how typing speed and accuracy are calculated can help you track your progress more effectively. Typing speed is measured in Words Per Minute, where a single word is standardized as exactly five keystrokes, including spaces and punctuation. This means that if you type fifty characters in one minute, your speed is ten words per minute, regardless of how long the actual words were. Accuracy, on the other hand, is the percentage of correct characters typed out of the total characters entered. If you type one hundred characters but make five mistakes, your accuracy is ninety-five percent. Many modern typing tests apply a penalty for errors, subtracting incorrect words from your gross speed to find your net words per minute speed. To pass professional employment tests, aiming for at least forty net words per minute with an accuracy of ninety-five percent is a safe target that meets most standards.",
+        "Ergonomics is the science of designing the workplace to fit the user, and it plays a critical role in typing comfort and performance. Typing for long periods without proper ergonomics can lead to physical discomfort, fatigue, and even chronic injuries over time. To set up an ergonomic typing station, ensure your chair provides adequate lower back support and is adjusted so your feet rest flat on the floor. Your monitor should be at eye level, about an arm's length away, to prevent neck strain. Keep your keyboard at a height that allows your elbows to bend at roughly ninety degrees, with your wrists remaining flat and straight while typing. Avoid resting your wrists on the desk or keyboard tray while typing, as this creates pressure on the nerves; instead, float your hands slightly above the keys. Taking short breaks to stretch your fingers and look away from the screen is also vital.",
+        "Effective time management is a cornerstone of professional success and personal well-being. With so many tasks and distractions competing for our attention daily, learning how to prioritize and schedule work is crucial. A simple yet powerful technique is the Pomodoro method, which involves working with focused attention for twenty-five minutes followed by a five-minute break. This cycle helps maintain high mental focus and prevents cognitive burnout. Another helpful approach is to tackle the most challenging task first thing in the morning, when your energy levels are highest. In the digital workspace, utilizing tools like calendars, task lists, and automation software can significantly streamline your workflow. By managing your time wisely and eliminating unproductive habits, you can achieve your professional goals without sacrificing your personal life and health.",
+        "Higher education opens doors to intellectual growth, critical thinking, and advanced career opportunities. In Pakistan, universities and colleges offer a wide range of programs in science, technology, arts, and humanities. Students who pursue higher education develop specialized knowledge, conduct research, and learn to analyze complex problems from multiple angles. Beyond academics, university life provides opportunities for personal development, networking, and leadership through student clubs and projects. Graduates with advanced degrees are better equipped to lead innovations, influence policies, and drive economic growth in their communities. In today's knowledge-based economy, acquiring a solid educational foundation is one of the most powerful investments a person can make for their future.",
+        "The concept of continuous learning is essential for survival in today's rapidly changing job market. With the rise of artificial intelligence, automation, and digital platforms, many traditional job roles are disappearing while entirely new fields are emerging. To stay relevant, professionals must adopt a growth mindset and be willing to acquire new skills throughout their careers. This process, often referred to as upskilling or reskilling, can be achieved through online courses, workshops, certifications, and hands-on practice. By dedicating just a few hours each week to learning something new, you can expand your career horizons and protect yourself against economic downturns. Remember, learning does not stop when you graduate; it is a lifelong journey of self-improvement.",
+        "A professional resume is your ticket to securing job interviews and landing your dream career. Your resume should be clean, well-structured, and tailored to the specific position you are applying for. Start with a strong professional summary, followed by a list of relevant skills, work experience, and educational background. Use action verbs and metrics to describe your achievements, showing potential employers how you added value in your previous roles. It is also important to keep your formatting consistent, using a professional font and clear headings. Avoid spelling errors, grammatical mistakes, and outdated contact information. Pair your resume with a customized cover letter that highlights your enthusiasm and qualifications for the job to stand out from other candidates.",
+        "Developing strong communication skills is vital for building successful relationships in both personal and professional settings. Effective communication involves not only speaking clearly but also listening actively to others. When presenting ideas in the workplace, be concise, organize your points logically, and consider your audience's perspective. It is also important to pay attention to non-verbal cues, such as eye contact, facial expressions, and body language. In written communication, such as emails and reports, use a professional tone and double-check your text for clarity. By mastering the art of communication, you can prevent misunderstandings, resolve conflicts, and collaborate more effectively with team members.",
+        "Public speaking is a powerful skill that can significantly boost your professional profile and leadership potential. Many people experience anxiety when presenting in front of an audience, but this fear can be overcome with preparation and practice. Start by thoroughly researching your topic and structuring your presentation with a clear introduction, body, and conclusion. Use visual aids like slides to support your points, but keep them simple and avoid reading directly from them. Practice delivery in front of a mirror or record yourself to identify areas for improvement. Focus on your breathing, speak at a steady pace, and make eye contact with your audience to build rapport and deliver your message with impact.",
+        "Mastering basic financial literacy is crucial for achieving long-term financial security and peace of mind. Financial literacy involves understanding how to create a monthly budget, track expenses, save money, and invest wisely for the future. By living within your means and avoiding high-interest debt, you can build an emergency fund that protects you from unexpected expenses. It is also beneficial to learn about different investment options, such as mutual funds, stocks, and retirement accounts, to grow your savings over time. Taking control of your personal finances allows you to make informed decisions and work towards achieving your financial goals, such as buying a home or retiring comfortably.",
+        "The remote work revolution has dramatically shifted the parameters of how modern tech teams perform their daily objectives. While operating from domestic settings provides enhanced flexibility and cancels out complex travel requirements, it also creates substantial challenges. Telecommuters often report feelings of isolation and report difficulty separating professional hours from domestic relaxation phases. To secure high efficiency inside a home setup, professionals should build a highly structured routine. Designating an explicit area strictly for work operations helps maintain concentration parameters. Regularly scheduled coordination checkpoints through voice lines ensure team alignment and preserve professional bonding elements. Sustaining systematic work schedules enables long-term performance gains without generating extreme mental fatigue.",
+        "Maintaining a healthy work-life balance is essential for preventing physical burnout and ensuring long-term career satisfaction. In our hyper-connected world, it is easy to let work encroach on personal time, leading to stress and reduced productivity. To achieve balance, set firm boundaries around your working hours and turn off work-related notifications when your day is finished. Dedicate time to hobbies, exercise, and spending quality moments with family and friends. Remember that taking time to rest and recharge is not a sign of laziness; it is necessary for maintaining your physical health, mental clarity, and overall happiness.",
+        "Problem-solving is a highly valued skill in any career, enabling you to identify challenges, analyze root causes, and implement effective solutions. When faced with a complex problem, break it down into smaller, manageable parts. Gather relevant data, consult with team members, and brainstorm potential solutions. Evaluate the pros and cons of each option before selecting the best course of action. Once a solution is implemented, monitor the results to ensure it resolves the issue. By approaching challenges with a positive and analytical mindset, you can navigate professional difficulties with confidence and achieve success."
+    ];
+
+    // --- 12 Urdu Paragraphs ---
+    const wordBankUr = [
+        "پاکستان میں سرکاری اور نجی ملازمتوں کے لیے ٹائپنگ ٹیسٹ ایک انتہائی اہم مرحلہ ہوتا ہے۔ خاص طور پر جونیئر کلرک، ڈیٹا انٹری آپریٹر، اور سٹینو ٹائپسٹ جیسی اسامیوں کے لیے امیدواروں کو اپنی ٹائپنگ کی رفتار اور درستی ثابت کرنی پڑتی ہے۔ اگر آپ اردو ٹائپنگ ٹیسٹ پاس کرنا چاہتے ہیں تو آپ کو روزانہ کی بنیاد پر باقاعدگی سے مشق کرنی ہوگی۔ اپنے ہاتھوں کو کی بورڈ پر صحیح پوزیشن میں رکھنا اور بغیر دیکھے ٹائپ کرنے کی عادت ڈالنا آپ کی رفتار کو بہتر بنانے میں مددگار ثابت ہو سکتا ہے۔ درستی کو ہمیشہ رفتار پر ترجیح دیں کیونکہ بار بار غلطیاں کرنے سے ٹائپنگ کی رفتار خود بخود کم ہو جاتی ہے۔",
+        "اردو ہماری قومی زبان ہے اور پاکستان کے تمام سرکاری دفاتر میں اب اردو ٹائپنگ کو لازمی قرار دیا جا رہا ہے۔ جمیل نوری نستعلیق فونٹ اردو لکھنے کے لیے سب سے زیادہ مقبول اور خوبصورت فونٹ مانا جاتا ہے۔ اس فونٹ میں ٹائپنگ کی مشق کرنے سے نہ صرف آپ کی پڑھنے کی صلاحیت بہتر ہوتی ہے بلکہ آپ دفتری خط و کتابت کو بھی پیشہ ورانہ انداز میں انجام دے سکتے ہیں۔ اگر آپ ٹائپنگ کی رفتار ساٹھ الفاظ فی منٹ تک لے جانا چاہتے ہیں تو آپ کو ہر لفظ کو دھیان سے دیکھنا ہوگا اور اپنی توجہ کی بورڈ کے بجائے اسکرین پر رکھنی ہوگی۔",
+        "تعلیم اور تربیت کسی بھی معاشرے کی ترقی کے لیے بنیادی ستون کی حیثیت رکھتے ہیں۔ پاکستان میں نوجوانوں کے لیے روزگار کے مواقع پیدا کرنے کے لیے مختلف فنی اور پیشہ ورانہ کورسز متعارف کروائے جا رہے ہیں۔ ان کورسز میں کمپیوٹر کی بنیادی مہارتیں، ویب ڈیزائننگ، اور خاص طور پر ٹائپنگ کی تربیت شامل ہے۔ جو نوجوان کمپیوٹر پر تیزی سے لکھنے کی صلاحیت رکھتے ہیں، انہیں نجی اور سرکاری دونوں شعبوں میں آسانی سے نوکریاں مل جاتی ہیں۔ اس لیے طلبہ کو چاہیے کہ وہ اپنی پڑھائی کے ساتھ ساتھ کمپیوٹر کی ان بنیادی مہارتوں کو بھی سیکھیں تاکہ وہ مستقبل میں ایک کامیاب کیریئر کا آغاز کر سکیں۔۔",
+        "صحت مند جسم میں ہی صحت مند دماغ کارفرما ہوتا ہے اور اچھی صحت کے لیے ورزش اور متوازن غذا انتہائی ضروری ہے۔ آج کل کے مشینی دور میں انسان جسمانی مشقت سے دور ہوتا جا رہا ہے جس کے نتیجے میں متعدد بیماریاں جنم لے رہی ہیں۔ ہمیں چاہیے کہ ہم روزانہ صبح کی سیر کو اپنی زندگی کا حصہ بنائیں اور تازہ ہوا میں سانس لیں۔ اس کے علاوہ زیادہ وقت کمپیوٹر اسکرین کے سامنے گزارنے والوں کو ہر آدھے گھنبے بعد اپنی آنکھوں کو آرام دینا چاہیے اور بیٹھنے کی پوزیشن درست رکھنی چاہیے۔",
+        "پاکستان کا نوجوان طبقہ ہمارا سب سے بڑا اثاثہ ہے اور اگر ان کی صلاحیتوں کو صحیح سمت میں استعمال کیا جائے تو ہمارا ملک تیزی سے ترقی کی منازل طے کر سکتا ہے۔ حکومت کی طرف سے نوجوانوں کے لیے مختلف روزگار اسکیمیں اور فری لانسنگ کورسز شروع کیے گئے ہیں جن سے ہزاروں طلبہ مستفید ہو رہے ہیں۔ اگر ہم سب مل کر ایمانداری سے کام کریں اور اپنے فرائض کو تن دہی سے انجام دیں تو وہ دن دور نہیں جب ہمارا ملک دنیا کی عظیم معاشی طاقتوں میں شمار ہوگا۔",
+        "تعلیم کسی بھی قوم کی ترقی اور خوشحالی کے لیے ناگزیر ہے کیونکہ تعلیم کے بغیر کوئی بھی معاشرہ پستی سے باہر نہیں نکل سکتا۔ تعلیم ہمیں اچھے اور برے میں تمیز کرنا سکھاتی ہے اور ہمارے اخلاق کو سنوارتی ہے۔ دنیا کے تمام ترقی یافتہ ممالک نے تعلیم کے شعبے پر سب سے زیادہ توجہ دی ہے اور اپنے بجٹ کا ایک بڑا حصہ اس پر خرچ کیا ہے۔ ہمارے ملک میں بھی تعلیمی نظام کو جدید تقاضوں کے مطابق ڈھالنے کی ضرورت ہے تاکہ ہمارے بچے عالمی سطح پر مقابلہ کر سکیں۔",
+        "اردو زبان کی تاریخ بہت وسیع ہے اور یہ دنیا کی خوبصورت ترین زبانوں میں سے ایک مانا جاتا ہے۔ اس زبان میں شاعری, نثر اور ادب کا ایک بہت بڑا خزانہ موجود ہے جو ہمارے اسلاف کی یاد دلاتا ہے۔ دفتری امور میں اردو کے نفاذ سے عام شہریوں کو سرکاری کاموں کو سمجھنے میں بہت آسانی ہوگی۔ اس لیے اردو ٹائپنگ کی مہارت حاصل کرنا ہر سرکاری ملازم کے لیے ضروری ہوتا جا رہا ہے۔ ہمیں اپنی قومی زبان پر فخر ہونا چاہیے اور اس کے فروغ کے لیے کوششیں کرنی چاہئیں۔",
+        "وقت کی پابندی کامیابی کا سب سے بڑا راز ہے اور جو لوگ وقت کی قدر نہیں کرتے وہ زندگی کی دوڑ میں بہت پیچھے رہ جاتے ہیں۔ سورج اپنے وقت پر نکلتا ہے اور غروب ہوتا ہے, اور موسم بھی اپنے مقررہ وقت پر تبدیل ہوتے ہیں جس سے ہمیں وقت کی اہمیت کا سبق ملتا ہے۔ اپنے تمام کاموں کے لیے ایک ٹائم ٹیبل بنائیں اور اس پر سختی سے عمل کریں۔ وقت کی بچت اور کام کی رفتار کو بڑھانے کے لیے شارٹ کٹ کے بجائے باقاعدہ طریقہ کار اور مہارت پر توجہ دیں۔",
+        "انٹرنیٹ نے دنیا کو ایک عالمی گاؤں بنا دیا ہے اور اب معلومات کا حصول صرف ایک کلک کی دوری پر ہے۔ ہم گھر بیٹھنے دنیا بھر کی لائبریریوں تک رسائی حاصل کر سکتے ہیں اور آن لائن کورسز کے ذریعے نئی مہارتیں سیکھ سکتے ہیں۔ تاہم انٹرنیٹ کا استعمال صرف تعمیری کاموں کے لیے ہونا چاہیے نہ کہ وقت ضائع کرنے کے لیے۔ نوجوانوں کو چاہیے کہ وہ سوشل میڈیا پر وقت گزارنے کے بجائے آن لائن روزگار کے طریقے سیکھیں اور اپنے والدین کے لیے سہارا بنیں۔",
+        "ملازمت کے حصول کے لیے انٹرویو کی تیاری کرنا ایک فن ہے جس میں آپ کے اعتماد اور بات چیت کے انداز کو جانچا جاتا ہے۔ انٹرویو میں جانے سے پہلے ادارے کے بارے میں معلومات حاصل کریں اور اپنے تعلیمی اسناد کو ترتیب سے رکھیں۔ دوران گفتگو شائستگی اور سچائی کا دامن ہاتھ سے نہ چھوڑیں اور جو سوال پوچھا جائے اس کا نپا تلا جواب دیں۔ اپنی جسمانی حرکات و سکنات کو کنٹرول میں رکھیں اور چہرے پر مسکراہٹ برقرار رکھیں تاکہ آپ کا اعتماد ظاہر ہو۔",
+        "ٹائپنگ کی رفتار کو بڑھانے کے لیے کی بورڈ پر نظر رکھے بغیر لکھنے کی عادت ڈالیں جسے ٹچ ٹائپنگ کہا جاتا ہے۔ اس طریقہ کار میں آپ کی انگلیاں خود بخود مطلوبہ بٹن تک پہنچ جاتی ہیں کیونکہ دماغ ان کی پوزیشن کو محفوظ کر لیتا ہے۔ شروع میں آپ کو تھوڑی مشکل پیش آئے گی اور ٹائپنگ کی رفتار بھی کم ہو جائے گی لیکن صبر اور مستقل مزاجی سے کام لینے پر چند ہفتوں میں آپ کی رفتار دگنی ہو جائے گی اور غلطیوں کی شرح بھی صفر ہو جائے گی۔۔",
+        "پاکستان کا شعبہ سیاحت ملک کے لیے خطیر زر مبادلہ کمانے کا بہترین ذریعہ بن سکتا ہے کیونکہ ہمارے ملک میں دنیا کے خوبصورت ترین پہاڑ, وادیاں اور تاریخی مقامات موجود ہیں۔ شمالی علاقہ جات کی خوبصورتی سیاحوں کو اپنی طرف راغب کرتی ہے۔ حکومت کو چاہیے کہ وہ سیاحتی مقامات پر انفراسٹرکچر کو بہتر بنائے اور غیر ملکی سیاحوں کو سیکیورٹی اور دیگر سہولیات فراہم کرے تاکہ ملک کا مثبت چہرہ دنیا کے سامنے پیش کیا جا سکے۔"
+    ];
+
+    // Standard Urdu Phonetic Keyboard Map
+    const urduPhoneticMap = {
+        'a': 'ا', 'A': 'آ', 'b': 'ب', 'B': 'ب', 'p': 'پ', 'P': 'ُ',
+        't': 'ت', 'T': 'ٹ', 'j': 'ج', 'J': 'ض', 'c': 'چ', 'C': 'ث',
+        'h': 'ہ', 'H': 'ح', 'x': 'خ', 'X': 'ژ', 'd': 'د', 'D': 'ڈ',
+        'r': 'ر', 'R': 'ڑ', 'z': 'ز', 'Z': 'ذ', 's': 'س', 'S': 'ص',
+        'w': 'و', 'W': 'ّ', 'e': 'ع', 'E': 'ٰ', 'g': 'گ', 'G': 'غ',
+        'f': 'ف', 'F': 'ف', 'q': 'ق', 'Q': 'ْ', 'k': 'ک', 'K': 'خ',
+        'l': 'ل', 'L': 'ل', 'm': 'م', 'M': 'م', 'n': 'ن', 'N': 'ں',
+        'o': 'ہ', 'O': 'ۃ', 'v': 'ط', 'V': 'ظ', 'y': 'ے', 'Y': 'َ',
+        'i': 'ی', 'I': 'ِ', 'u': 'ء', 'U': 'ئ'
+    };
+
+    let currentLanguage = 'en'; 
+    let testDuration = 60; 
+    let timeLeft = testDuration;
+    let timerInterval = null;
+    let isRunning = false;
+    let characterIndex = 0;
+    let totalErrors = 0;
+    let totalTyped = 0;
+    let currentMode = "with-space"; 
+    let idleTimeout = null;
+    let paragraphWords = [];
+
+    const wrapperBox = document.querySelector('.typing-container');
+    const startTooltip = document.getElementById('start-typing-popup');
+    const textDisplay = document.getElementById('text-display');
+    const hiddenInput = document.getElementById('hidden-input');
+    const countdownText = document.getElementById('countdown');
+    const progressBar = document.getElementById('progress-bar');
+    const wpmText = document.getElementById('wpm-val');
+    const cpmText = document.getElementById('cpm-val');
+    const accText = document.getElementById('acc-val');
+    const timeButtons = document.querySelectorAll('.time-btn');
+    const resetBtn = document.getElementById('btn-reset');
+    const targetBox = document.getElementById('type-box-click');
+    
+    const tabWithSpace = document.getElementById('tab-with-space');
+    const tabNoSpace = document.getElementById('tab-no-space');
+
+    const resultModal = document.getElementById('result-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalWPM = document.getElementById('modal-wpm');
+    const modalACC = document.getElementById('modal-acc');
+    const modalSuggestion = document.getElementById('modal-suggestion');
+    const modalClose = document.getElementById('modal-close');
+
+    function setLanguage(lang) {
+        if (isRunning) return;
+        currentLanguage = lang;
+        
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+        document.getElementById('lang-ur').classList.toggle('active', lang === 'ur');
+        
+        const modeToggle = document.getElementById('mode-toggle-panel');
+        const urduPreview = document.getElementById('urdu-preview-bar');
+        
+        if (lang === 'ur') {
+            modeToggle.style.display = 'none';
+            urduPreview.style.display = 'flex';
+            textDisplay.classList.add('urdu-text');
+            textDisplay.style.direction = 'rtl';
+            document.getElementById('urdu-preview-word').innerText = "ٹائپ شروع کریں...";
+        } else {
+            modeToggle.style.display = 'flex';
+            urduPreview.style.display = 'none';
+            textDisplay.classList.remove('urdu-text');
+            textDisplay.style.direction = 'ltr';
+        }
+        
+        initializeTest();
+    }
+
+    function initializeTest() {
+        clearInterval(timerInterval);
+        clearTimeout(idleTimeout);
+        isRunning = false;
+        timeLeft = testDuration;
+        characterIndex = 0;
+        totalErrors = 0;
+        totalTyped = 0;
+
+        countdownText.innerText = timeLeft;
+        wpmText.innerText = "0";
+        cpmText.innerText = "0";
+        accText.innerText = "100%";
+        hiddenInput.value = "";
+        
+        wrapperBox.classList.remove('idle');
+        
+        startTooltip.style.opacity = '1';
+        startTooltip.style.display = 'block';
+        
+        updateCircleProgress(1);
+
+        if (currentLanguage === 'en') {
+            let selectedText = wordBankEn[Math.floor(Math.random() * wordBankEn.length)];
+            if (currentMode === "no-space") {
+                selectedText = selectedText.replace(/ /g, "");
+            }
+            paragraphWords = selectedText.split(currentMode === "no-space" ? "" : " ");
+
+            textDisplay.innerHTML = selectedText.split('').map((char) => {
+                if (char === " ") return `<span class="char space-char">&nbsp;</span>`;
+                return `<span class="char">${char}</span>`;
+            }).join('');
+            
+            if(textDisplay.firstChild) textDisplay.firstChild.classList.add('current');
+        } else {
+            let selectedText = wordBankUr[Math.floor(Math.random() * wordBankUr.length)];
+            paragraphWords = selectedText.split(' ');
+            textDisplay.innerHTML = paragraphWords.map((word, idx) => {
+                return `<span class="word" id="word-${idx}">${word}</span>`;
+            }).join(' ');
+            
+            if(textDisplay.firstChild) textDisplay.firstChild.classList.add('current');
+            document.getElementById('urdu-preview-word').innerText = "ٹائپ شروع کریں...";
+        }
+        
+        // Dynamic horizontal midpoint reset placement logic
+        const containerWidth = wrapperBox.offsetWidth;
+        if (currentLanguage === 'en') {
+            textDisplay.style.transform = `translateX(${containerWidth / 2}px)`;
+        } else {
+            // Urdu alignment matching horizontal flow from the right direction point
+            textDisplay.style.transform = `translateX(-${containerWidth / 2}px)`;
+        }
+    }
+
+    function focusTyping() {
+        hiddenInput.focus();
+    }
+
+    function hideStartOverlay() {
+        if (startTooltip.style.opacity !== '0') {
+            startTooltip.style.opacity = '0';
+            setTimeout(() => {
+                startTooltip.style.display = 'none';
+            }, 200);
+        }
+    }
+
+    function updateCircleProgress(percentage) {
+        const perimeter = 283; 
+        progressBar.style.strokeDashoffset = perimeter * (1 - percentage);
+    }
+
+    function startTimer() {
+        isRunning = true;
+        hideStartOverlay();
+        timerInterval = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                countdownText.innerText = timeLeft;
+                updateCircleProgress(timeLeft / testDuration);
+                calculateScores();
+            } else {
+                endTest();
+            }
+        }, 1000);
+    }
+
+    function handleTyping() {
+        if (currentLanguage === 'en') {
+            handleTypingEnglish();
+        } else {
+            handleTypingUrdu();
+        }
+    }
+
+    function handleTypingEnglish() {
+        const contentChars = textDisplay.children;
+        let inputValue = hiddenInput.value;
+
+        if (!isRunning && inputValue.length > 0) {
+            startTimer();
+        }
+
+        if (characterIndex >= contentChars.length || timeLeft <= 0) return;
+
+        hideStartOverlay();
+        wrapperBox.classList.remove('idle');
+        clearTimeout(idleTimeout);
+        
+        if (isRunning) {
+            idleTimeout = setTimeout(() => {
+                wrapperBox.classList.add('idle');
+            }, 3000);
+        }
+
+        totalTyped = inputValue.length;
+        totalErrors = 0;
+        const currentIdx = inputValue.length;
+
+        let startBound = Math.max(0, currentIdx - 5);
+        let endBound = Math.min(contentChars.length, currentIdx + 5);
+
+        for (let idx = startBound; idx < endBound; idx++) {
+            const span = contentChars[idx];
+            if (!span) continue;
+            const typedChar = inputValue[idx];
+            
+            span.className = 'char' + (span.classList.contains('space-char') ? ' space-char' : '');
+
+            if (typedChar != null) {
+                let actualTarget = span.classList.contains('space-char') ? " " : span.innerText;
+                if (typedChar === actualTarget) {
+                    span.classList.add('correct');
+                } else {
+                    span.classList.add('incorrect');
+                }
+            } else if (idx === currentIdx) {
+                span.classList.add('current');
+            }
+        }
+        
+        for(let idx = 0; idx < currentIdx; idx++){
+            let actualTarget = contentChars[idx].classList.contains('space-char') ? " " : contentChars[idx].innerText;
+            if(inputValue[idx] !== actualTarget) totalErrors++;
+        }
+
+        characterIndex = currentIdx;
+        
+        // --- STABLE DEAD-CENTER CURSOR CALCULATION ENGINE ---
+        const containerWidth = wrapperBox.offsetWidth;
+        const activeSpan = contentChars[characterIndex] || contentChars[contentChars.length - 1];
+        if (activeSpan) {
+            // Subtract active item offset position from half container width to maintain dead-center alignment
+            const centerShift = (containerWidth / 2) - activeSpan.offsetLeft;
+            textDisplay.style.transform = `translateX(${centerShift}px)`;
+        }
+
+        calculateScores();
+
+        if (characterIndex >= contentChars.length) {
+            endTest();
+        }
+    }
+
+    function handleTypingUrdu() {
+        const contentWords = textDisplay.children;
+        let inputValue = hiddenInput.value;
+
+        if (!isRunning && inputValue.length > 0) {
+            startTimer();
+        }
+
+        if (timeLeft <= 0) return;
+
+        hideStartOverlay();
+        wrapperBox.classList.remove('idle');
+        clearTimeout(idleTimeout);
+        
+        if (isRunning) {
+            idleTimeout = setTimeout(() => {
+                wrapperBox.classList.add('idle');
+            }, 3000);
+        }
+
+        const endsWithSpace = inputValue.endsWith(' ');
+        const typedWords = inputValue.trimStart().split(/\s+/);
+        if (inputValue.trim() === "") {
+            typedWords.length = 0;
+        }
+
+        totalTyped = inputValue.length;
+        totalErrors = 0;
+
+        for (let idx = 0; idx < contentWords.length; idx++) {
+            const span = contentWords[idx];
+            span.className = 'word';
+            const targetWord = paragraphWords[idx];
+            const typedWord = typedWords[idx];
+
+            if (typedWord != null) {
+                if (idx < typedWords.length - 1 || (idx === typedWords.length - 1 && endsWithSpace)) {
+                    if (typedWord === targetWord) {
+                        span.classList.add('correct');
+                    } else {
+                        span.classList.add('incorrect');
+                        totalErrors += targetWord.length; 
+                    }
+                } else {
+                    span.classList.add('current');
+                    document.getElementById('urdu-preview-word').innerText = typedWord;
+                }
+            } else {
+                if (idx === typedWords.length && !endsWithSpace) {
+                    span.classList.add('current');
+                    document.getElementById('urdu-preview-word').innerText = "ٹائپ کریں...";
+                }
+            }
+        }
+
+        let activeWordIdx = typedWords.length;
+        if (endsWithSpace && activeWordIdx > 0) {
+            activeWordIdx--;
+        }
+
+        // --- STABLE DEAD-CENTER CURSOR FOR URDU ---
+        const containerWidth = wrapperBox.offsetWidth;
+        const activeSpan = contentWords[activeWordIdx] || contentWords[contentWords.length - 1];
+        if (activeSpan) {
+            const centerShift = (containerWidth / 2) - activeSpan.offsetLeft - (activeSpan.offsetWidth / 2);
+            textDisplay.style.transform = `translateX(${centerShift}px)`;
+        }
+
+        calculateScores();
+
+        if (typedWords.length >= paragraphWords.length && endsWithSpace) {
+            endTest();
+        }
+    }
+
+    function calculateScores() {
+        const timeElapsed = (testDuration - timeLeft) / 60; 
+        if (timeElapsed > 0 && totalTyped > 0) {
+            let correctWordsCount = 0;
+            let currentInputValue = hiddenInput.value;
+
+            if (currentLanguage === 'en') {
+                if (currentMode === "with-space") {
+                    const originalWords = textDisplay.innerText.trim().split(/\s+/);
+                    const typedWords = currentInputValue.trimStart().split(/\s+/);
+                    for (let i = 0; i < typedWords.length; i++) {
+                        if (typedWords[i] && typedWords[i] === originalWords[i]) {
+                            correctWordsCount++;
+                        }
+                    }
+                } else {
+                    let correctChars = 0;
+                    const contentChars = textDisplay.querySelectorAll('.char');
+                    for (let i = 0; i < currentInputValue.length; i++) {
+                        if (contentChars[i] && !contentChars[i].classList.contains('incorrect')) {
+                            correctChars++;
+                        }
+                    }
+                    correctWordsCount = Math.round(correctChars / 5);
+                }
+            } else {
+                const typedWords = currentInputValue.trimStart().split(/\s+/);
+                const contentWords = textDisplay.querySelectorAll('.word');
+                for (let i = 0; i < typedWords.length; i++) {
+                    if (contentWords[i] && typedWords[i] === contentWords[i].innerText.trim()) {
+                        correctWordsCount++;
+                    }
+                }
+            }
+
+            wpmText.innerText = correctWordsCount;
+            
+            const cpm = Math.round(totalTyped / timeElapsed);
+            cpmText.innerText = Math.max(0, cpm);
+
+            const finalAcc = Math.round(((totalTyped - totalErrors) / totalTyped) * 100);
+            accText.innerText = Math.max(0, finalAcc) + "%";
+        }
+    }
+
+    function endTest() {
+        clearInterval(timerInterval);
+        clearTimeout(idleTimeout);
+        isRunning = false;
+        wrapperBox.classList.remove('idle');
+        countdownText.innerText = "Done!";
+        triggerPerformancePopup();
+    }
+
+    function triggerPerformancePopup() {
+        const finalWpm = parseInt(wpmText.innerText);
+        const finalAcc = parseInt(accText.innerText);
+
+        modalWPM.innerText = finalWpm;
+        modalACC.innerText = finalAcc + "%";
+
+        let headline = "";
+        let className = "";
+        let suggestion = "";
+
+        if (finalWpm >= 60 && finalAcc >= 90) {
+            headline = "Elite Typist! 🏆";
+            className = "rank-pro";
+            suggestion = `Exceptional performance! With a speed of ${finalWpm} WPM, you easily qualify for Stenographer, Senior Clerk, and highly technical data roles.`;
+        } else if (finalWpm >= 40 && finalAcc >= 90) {
+            headline = "Professional Typist! 🌟";
+            className = "rank-pro";
+            suggestion = `Great job! You qualify for Data Entry Operator, Computer Assistant, and Senior Clerk positions (standard is 40 WPM).`;
+        } else if (finalWpm >= 30 && finalAcc >= 85) {
+            headline = "Government Qualified! 📈";
+            className = "rank-avg";
+            suggestion = `Well done! You meet the minimum typing requirements (30 WPM) for Lower Division Clerks (LDC) and Junior Clerks.`;
+        } else {
+            headline = "Keep Practicing! ⌨️";
+            className = "rank-low";
+            suggestion = `You are on the right path! Most clerical and data entry jobs require at least 30 WPM. Focus 100% on accuracy first.`;
+        }
+
+        modalTitle.innerText = headline;
+        modalTitle.className = "modal-headline " + className;
+        modalSuggestion.innerText = suggestion;
+
+        resultModal.classList.add('open');
+    }
+
+    hiddenInput.addEventListener('keydown', (e) => {
+    if (currentLanguage === 'ur' && e.key.length === 1) {
+        // If the user presses the spacebar, let the browser process it normally
+        if (e.key === ' ') {
+            return; 
+        }
+
+        const mappedChar = urduPhoneticMap[e.key];
+        if (mappedChar) {
+            e.preventDefault();
+            const start = hiddenInput.selectionStart;
+            const end = hiddenInput.selectionEnd;
+            const text = hiddenInput.value;
+            hiddenInput.value = text.slice(0, start) + mappedChar + text.slice(end);
+            hiddenInput.selectionStart = hiddenInput.selectionEnd = start + 1;
+            handleTyping();
+        }
+    }
+});
+
+    window.addEventListener('keydown', (e) => {
+        if (!resultModal.classList.contains('open') && document.activeElement !== hiddenInput) {
+            if (e.key.length === 1) {
+                hiddenInput.focus();
+            }
+        }
+    });
+
+    timeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if(isRunning) return; 
+            timeButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            testDuration = parseInt(btn.getAttribute('data-time'));
+            initializeTest();
+        });
+    });
+
+    tabWithSpace.addEventListener('click', () => {
+        if(isRunning) return;
+        tabNoSpace.classList.remove('active');
+        tabWithSpace.classList.add('active');
+        currentMode = "with-space";
+        initializeTest();
+    });
+
+    tabNoSpace.addEventListener('click', () => {
+        if(isRunning) return;
+        tabWithSpace.classList.remove('active');
+        tabNoSpace.classList.add('active');
+        currentMode = "no-space";
+        initializeTest();
+    });
+
+    targetBox.addEventListener('click', focusTyping);
+    hiddenInput.addEventListener('input', handleTyping);
+    resetBtn.addEventListener('click', initializeTest);
+    
+    modalClose.addEventListener('click', () => {
+        resultModal.classList.remove('open');
+        initializeTest();
+    });
+
+    // Handle responsive window scaling centerpoints smoothly
+    window.addEventListener('resize', () => {
+        if(!isRunning) initializeTest();
+    });
+
+    setLanguage('en');
+</script>
+
+</body>
+</html>

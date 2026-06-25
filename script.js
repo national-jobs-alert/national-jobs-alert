@@ -5,6 +5,7 @@
  * id | title | organization | category | city | education | deadline | vacancies
  * | description | applyLink | isNew | isScheme | schemeDesc
  * | gender | ageLimit | applyProcedure | domicile | jobType | howToApply | importantPoints | adImage
+ * | experience
  */
 
 // Your Google Sheet — update jobs here: https://docs.google.com/spreadsheets/d/1o7r2FVF5pvXFKKXa82yJKPZ7KyxcMCgMMtm86RR70hA/edit
@@ -23,7 +24,7 @@ const BUILT_IN_JOBS = [
   { id:3,  title:"PSCA – Punjab Safe City Authority Jobs", org:"PSCA", category:"Government", city:"Lahore", edu:"Graduation / Masters", deadline:"June 30, 2026", vacancies:"80", desc:"Punjab Safe City Authority is hiring IT Specialists, Data Analysts, Control Room Operators and Support Staff for its operations in Lahore.", applyLink:"https://expertjobs24.com/", isNew:true },
   { id:4,  title:"Health Department Punjab – Through NTS", org:"Health Dept", category:"Government", city:"Punjab", edu:"MBBS / Nursing / Intermediate", deadline:"July 5, 2026", vacancies:"300+", desc:"Health Department Punjab is hiring Doctors, Nurses, Pharmacists, Lab Technicians and Dispenser staff for District Health Authorities across Punjab.", applyLink:"https://expertjobs24.com/", isNew:true },
   { id:5,  title:"Pakistan Rangers Sindh – Various Posts", org:"Pakistan Rangers Sindh", category:"Army", city:"Karachi / Sindh", edu:"Matric / Intermediate", deadline:"June 28, 2026", vacancies:"500+", desc:"Pakistan Rangers Sindh is recruiting eligible candidates for Rifleman, Cook, Sweeper, Clerk, and other posts. Age 17–25 years. Physical test required.", applyLink:"https://expertjobs24.com/", isNew:true },
-  { id:6,  title:"Jinnah Institute of Cardiology – Medical Staff", org:"JIC Lahore", category:"Government", city:"Lahore", edu:"MBBS / Nursing", deadline:"June 20, 2026", vacancies:"40", desc:"Jinnah Institute of Cardiology Lahore requires Cardiologists, Nurses, ECG Technicians, and Ward Boys/Girls for its cardiac care unit.", applyLink:"https://expertjobs24.com/", isNew:false },
+  { id:6,  title:"Jinnah Institute of Cardiology – Medical Staff", org:"JIC Lahore", category:"Government", city:"Lahore", edu:"MBBS / Nursing", deadline:"June 21, 2026", vacancies:"40", desc:"Jinnah Institute of Cardiology Lahore requires Cardiologists, Nurses, ECG Technicians, and Ward Boys/Girls for its cardiac care unit.", applyLink:"https://expertjobs24.com/", isNew:true, experience:"no-experience" },
   { id:7,  title:"Ministry of Industries – Engineering Development Board", org:"EDB", category:"Government", city:"Islamabad", edu:"BE / Masters", deadline:"June 25, 2026", vacancies:"25", desc:"Ministry of Industries and Production's Engineering Development Board requires Economic Officers, IT Officers, Assistant Directors and Research Analysts.", applyLink:"https://expertjobs24.com/", isNew:true },
   { id:8,  title:"FPSC – Federal Public Service Commission Jobs 2026", org:"FPSC", category:"FPSC", city:"All Over Pakistan", edu:"Graduation / Masters", deadline:"July 10, 2026", vacancies:"200+", desc:"FPSC announces vacancies for CSS, Inspector FIA, Inspector Customs, and various BS-16 to BS-18 posts. Competitive exam will be held across Pakistan.", applyLink:"https://www.fpsc.gov.pk/", isNew:true },
   { id:9,  title:"PPSC – Punjab Public Service Commission 2026", org:"PPSC", category:"PPSC", city:"Punjab", edu:"Graduation / Masters", deadline:"July 15, 2026", vacancies:"500+", desc:"PPSC announces multiple vacancies including Subject Specialists, Lecturers, Assistant Directors, and Sub-Inspectors. Online applications at ppsc.gop.pk.", applyLink:"https://ppsc.gop.pk/", isNew:true },
@@ -124,14 +125,82 @@ const BUILT_IN_JOBS = [
 // GOVERNMENT SCHEMES DATA
 // ============================================================
 const SCHEMES_DATA = [
-  { icon:"💰", title:"PM Youth Business Loan", desc:"Interest-free loans up to Rs. 500,000 for youth aged 21–45 to start/expand business.", badge:"Open" },
-  { icon:"🎓", title:"Hunarmand Pakistan Scheme", desc:"Free technical & vocational training in IT, AI, Digital Marketing, E-commerce, and Freelancing.", badge:"Open" },
-  { icon:"🏠", title:"Mera Pakistan Mera Ghar", desc:"Affordable housing loan scheme for low/middle-income families. 5% markup on Rs. 3.5 million loan.", badge:"Active" },
-  { icon:"💻", title:"DigiSkills Training Programme", desc:"Free online courses in freelancing, digital marketing, Shopify, SEO, QuickBooks — 200,000+ seats.", badge:"Open" },
-  { icon:"👩‍⚕️", title:"Sehat Sahulat Programme", desc:"Free health insurance up to Rs. 1 million per family for government employees and low-income people.", badge:"Active" },
-  { icon:"🌾", title:"Kissan Card Scheme", desc:"Agricultural subsidy card for farmers offering Rs. 25,000 per acre for seeds, fertilizer and pesticides.", badge:"Active" },
-  { icon:"🚗", title:"PM Electric Vehicle Policy", desc:"Subsidized electric vehicles and motorbikes for youth entrepreneurs in ride-hailing sector.", badge:"New" },
-  { icon:"📱", title:"Kamyab Jawan Programme", desc:"Skill development, sports, internships, and startup support for youth aged 15–29 years.", badge:"Open" },
+  {
+    icon:"💰", title:"PM Youth Business Loan", urduTitle:"وزیراعظم نوجوان کاروباری قرضہ",
+    desc:"Interest-free loans up to Rs. 500,000 for youth aged 21–45 to start/expand business.", badge:"Open",
+    details:"The PM Youth Business Loan Scheme provides interest-free and low-markup loans to young entrepreneurs across Pakistan. Applicants aged 21–45 can apply through designated banks. Required documents include CNIC, business plan, and domicile certificate.",
+    applyLink:"#", eligibility:"Age 21–45 | Pakistani citizen | Valid CNIC",
+    relatedJobs:[
+      { title:"[Edit] Scheme Coordinator — PM Youth Loan", org:"Bank of Punjab", city:"Lahore", edu:"Graduation", deadline:"July 30, 2026", vacancies:"10" },
+      { title:"[Edit] Field Officer — Youth Business Loan", org:"NBP", city:"All Over Pakistan", edu:"Intermediate", deadline:"August 15, 2026", vacancies:"25" }
+    ]
+  },
+  {
+    icon:"🎓", title:"Hunarmand Pakistan Scheme", urduTitle:"ہنرمند پاکستان اسکیم",
+    desc:"Free technical & vocational training in IT, AI, Digital Marketing, E-commerce, and Freelancing.", badge:"Open",
+    details:"Hunarmand Pakistan offers free vocational training in high-demand skills including IT, AI, Digital Marketing, E-commerce, and Freelancing. Training centres are available across all provinces. No fee required.",
+    applyLink:"#", eligibility:"Age 18–35 | Matric minimum | Pakistani citizen",
+    relatedJobs:[
+      { title:"[Edit] IT Instructor — Hunarmand Programme", org:"TEVTA", city:"Punjab", edu:"DAE / Graduation", deadline:"July 20, 2026", vacancies:"50" },
+      { title:"[Edit] Training Centre Assistant", org:"NAVTTC", city:"Islamabad", edu:"Intermediate", deadline:"August 1, 2026", vacancies:"30" }
+    ]
+  },
+  {
+    icon:"🏠", title:"Mera Pakistan Mera Ghar", urduTitle:"میرا پاکستان میرا گھر",
+    desc:"Affordable housing loan scheme for low/middle-income families. 5% markup on Rs. 3.5 million loan.", badge:"Active",
+    details:"Mera Pakistan Mera Ghar (MPMG) provides subsidized housing loans for low and middle-income families. Markup as low as 5% on loans up to Rs. 3.5 million. Apply through NAPHDA portal or partner banks.",
+    applyLink:"#", eligibility:"First-time home buyer | Income criteria apply | Valid CNIC",
+    relatedJobs:[
+      { title:"[Edit] Housing Scheme Officer", org:"NAPHDA", city:"Islamabad", edu:"Graduation", deadline:"July 25, 2026", vacancies:"15" }
+    ]
+  },
+  {
+    icon:"💻", title:"DigiSkills Training Programme", urduTitle:"ڈigiSkills تربیتی پروگرام",
+    desc:"Free online courses in freelancing, digital marketing, Shopify, SEO, QuickBooks — 200,000+ seats.", badge:"Open",
+    details:"DigiSkills offers 100% free online courses in Freelancing, Digital Marketing, E-Commerce, Creative Writing, SEO, and Graphic Design. Register at digiskills.pk — no prior experience needed.",
+    applyLink:"https://digiskills.pk/", eligibility:"Open to all Pakistanis | Basic computer knowledge",
+    relatedJobs:[
+      { title:"[Edit] DigiSkills Programme Coordinator", org:"MOITT", city:"Islamabad", edu:"Graduation", deadline:"August 10, 2026", vacancies:"8" },
+      { title:"[Edit] Freelancing Trainer", org:"PITB", city:"Lahore", edu:"Computer Diploma", deadline:"July 30, 2026", vacancies:"20" }
+    ]
+  },
+  {
+    icon:"👩‍⚕️", title:"Sehat Sahulat Programme", urduTitle:"صحت سہولت پروگرام",
+    desc:"Free health insurance up to Rs. 1 million per family for government employees and low-income people.", badge:"Active",
+    details:"Sehat Sahulat Programme provides free health insurance coverage up to Rs. 1 million per family annually. Covers hospitalization, surgeries, and maternity care at empaneled hospitals nationwide.",
+    applyLink:"#", eligibility:"Registered families | CNIC required | Check eligibility online",
+    relatedJobs:[
+      { title:"[Edit] Sehat Sahulat Field Officer", org:"Health Dept", city:"Punjab", edu:"Intermediate", deadline:"July 15, 2026", vacancies:"40" }
+    ]
+  },
+  {
+    icon:"🌾", title:"Kissan Card Scheme", urduTitle:"کسان کارڈ اسکیم",
+    desc:"Agricultural subsidy card for farmers offering Rs. 25,000 per acre for seeds, fertilizer and pesticides.", badge:"Active",
+    details:"Kissan Card provides subsidized agricultural inputs to registered farmers. Benefits include discounted seeds, fertilizer, and pesticides worth Rs. 25,000 per acre. Register through agriculture department.",
+    applyLink:"#", eligibility:"Registered farmer | Land ownership proof | CNIC",
+    relatedJobs:[
+      { title:"[Edit] Agriculture Extension Officer", org:"Agriculture Dept", city:"Multan", edu:"BSc Agriculture", deadline:"August 5, 2026", vacancies:"20" }
+    ]
+  },
+  {
+    icon:"🚗", title:"PM Electric Vehicle Policy", urduTitle:"وزیراعظم الیکٹرک گاڑی پالیسی",
+    desc:"Subsidized electric vehicles and motorbikes for youth entrepreneurs in ride-hailing sector.", badge:"New",
+    details:"PM Electric Vehicle Policy offers subsidized electric bikes and cars for youth entrepreneurs, especially in ride-hailing and delivery sectors. Reduced taxes and easy installment plans available.",
+    applyLink:"#", eligibility:"Age 18–35 | Valid driving license | Business registration",
+    relatedJobs:[
+      { title:"[Edit] EV Policy Implementation Officer", org:"Ministry of Industries", city:"Islamabad", edu:"Graduation", deadline:"August 20, 2026", vacancies:"5" }
+    ]
+  },
+  {
+    icon:"📱", title:"Kamyab Jawan Programme", urduTitle:"کامیاب جوان پروگرام",
+    desc:"Skill development, sports, internships, and startup support for youth aged 15–29 years.", badge:"Open",
+    details:"Kamyab Jawan Programme supports Pakistani youth aged 15–29 with skill development, sports facilities, internships, and startup funding. Multiple sub-programmes under one umbrella.",
+    applyLink:"https://kamyabjawan.gov.pk/", eligibility:"Age 15–29 | Pakistani citizen | Varies by sub-programme",
+    relatedJobs:[
+      { title:"[Edit] Kamyab Jawan Programme Officer", org:"PM Youth Programme", city:"All Over Pakistan", edu:"Graduation", deadline:"July 30, 2026", vacancies:"35" },
+      { title:"[Edit] Youth Skills Trainer", org:"NAVTTC", city:"Karachi", edu:"Computer Diploma", deadline:"August 12, 2026", vacancies:"25" }
+    ]
+  },
 ];
 
 // ============================================================
@@ -143,6 +212,8 @@ let displayedCount = 10;
 const PER_PAGE = 10;
 let activeCategory = '';
 let activeSearch = '';
+let activeExperience = '';
+let openSchemeIndex = -1;
 
 // ============================================================
 // INIT
@@ -156,6 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderJobs();
   refreshStatsFromJobs();
   tryGoogleSheet();
+  setupGetInTouch();
+  loadUrduFontPreference();
   
   const searchInput = document.getElementById('searchInput');
   if (searchInput) {
@@ -172,6 +245,97 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================================
+// GET IN TOUCH DROPDOWN
+// ============================================================
+function setupGetInTouch() {
+  const btn = document.getElementById('getInTouchBtn');
+  const dropdown = document.getElementById('getInTouchDropdown');
+  if (!btn || !dropdown) return;
+
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const open = dropdown.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+
+  document.addEventListener('click', () => {
+    dropdown.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  });
+}
+
+// ============================================================
+// URDU FONT SELECTOR FOR SCHEMES
+// ============================================================
+const URDU_FONTS = {
+  'jameel-nastaleeq': "'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', serif",
+  'jameel-kasheeda': "'Jameel Noori Kasheeda', 'Noto Nastaliq Urdu', serif",
+  'bombay-black': "'Bombay Black', 'Noto Nastaliq Urdu', serif",
+  'bombay-batool': "'Bombay Batool', 'Noto Nastaliq Urdu', serif",
+  'noto-nastaliq': "'Noto Nastaliq Urdu', serif"
+};
+
+function changeUrduFont(fontKey) {
+  const schemesSection = document.getElementById('schemes');
+  if (schemesSection) {
+    schemesSection.style.setProperty('--scheme-urdu-font', URDU_FONTS[fontKey] || URDU_FONTS['noto-nastaliq']);
+  }
+  localStorage.setItem('nja-urdu-font', fontKey);
+}
+
+function loadUrduFontPreference() {
+  const saved = localStorage.getItem('nja-urdu-font') || 'jameel-nastaleeq';
+  const select = document.getElementById('urduFontSelect');
+  if (select) select.value = saved;
+  changeUrduFont(saved);
+}
+
+// ============================================================
+// DEADLINE URGENCY — flashing badges & alerts
+// ============================================================
+function parseDeadline(deadlineStr) {
+  if (!deadlineStr) return null;
+  const parsed = Date.parse(deadlineStr.trim());
+  if (!isNaN(parsed)) return new Date(parsed);
+  const parts = deadlineStr.match(/(\w+)\s+(\d{1,2}),?\s+(\d{4})/);
+  if (parts) {
+    const d = new Date(`${parts[1]} ${parts[2]}, ${parts[3]}`);
+    if (!isNaN(d)) return d;
+  }
+  return null;
+}
+
+function getDeadlineUrgency(deadlineStr) {
+  const deadline = parseDeadline(deadlineStr);
+  if (!deadline) return { level: 'unknown', label: deadlineStr ? `Last Date: ${deadlineStr}` : 'See Advertisement', days: null };
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const deadlineDay = new Date(deadline);
+  deadlineDay.setHours(0, 0, 0, 0);
+  const diffDays = Math.round((deadlineDay - today) / (1000 * 60 * 60 * 24));
+
+  if (diffDays < 0) return { level: 'expired', label: 'EXPIRED', days: diffDays };
+  if (diffDays === 0) return { level: 'today', label: '⚠ EXPIRING TODAY!', days: 0 };
+  if (diffDays === 1) return { level: 'tomorrow', label: '🔴 LAST DATE TOMORROW!', days: 1 };
+  if (diffDays <= 3) return { level: 'urgent', label: `🔴 CLOSING IN ${diffDays} DAYS!`, days: diffDays };
+  if (diffDays <= 7) return { level: 'soon', label: `⏰ Closing in ${diffDays} days`, days: diffDays };
+  return { level: 'normal', label: `Last Date: ${deadlineStr}`, days: diffDays };
+}
+
+function deadlineBadgeHTML(urgency) {
+  const cls = `deadline-badge deadline-${urgency.level}`;
+  return `<span class="${cls}">${escapeHtml(urgency.label)}</span>`;
+}
+
+function cardUrgencyClass(urgency) {
+  if (['today', 'tomorrow', 'urgent'].includes(urgency.level)) return 'job-card-urgent';
+  if (urgency.level === 'soon') return 'job-card-soon';
+  if (urgency.level === 'expired') return 'job-card-expired';
+  return '';
+}
+
+// ============================================================
 // LIVE DATE
 // ============================================================
 function setLiveDate() {
@@ -185,23 +349,31 @@ function setLiveDate() {
 // NEWS TICKER
 // ============================================================
 function startTicker() {
-  const items = allJobs.filter(j => j.isNew).slice(0, 8).map(j => `🔴 NEW: ${j.title} — ${j.org} — Deadline: ${j.deadline}`);
+  const urgentJobs = allJobs
+    .map(j => ({ ...j, urgency: getDeadlineUrgency(j.deadline) }))
+    .filter(j => ['today', 'tomorrow', 'urgent'].includes(j.urgency.level) || j.isNew)
+    .slice(0, 10);
+
+  const items = urgentJobs.length
+    ? urgentJobs.map(j => `🔴 ${j.urgency.label} — ${j.title} — ${j.org}`)
+    : allJobs.filter(j => j.isNew).slice(0, 8).map(j => `🔴 NEW: ${j.title} — ${j.org} — Deadline: ${j.deadline}`);
+
   const tickerEl = document.getElementById('ticker');
-  if (tickerEl) tickerEl.textContent = items.join('   ●   ');
+  if (tickerEl) tickerEl.textContent = items.length ? items.join('   ●   ') : 'National Jobs Alert — Latest jobs updated daily';
 }
 
 // ============================================================
 // ANIMATED STATS
 // ============================================================
 function animateStats(customTargets) {
-  document.querySelectorAll('.stat-number').forEach(el => {
+  document.querySelectorAll('.stat-number, .hero-stat-num').forEach(el => {
     const target = customTargets?.[el.dataset.statKey] ?? +el.dataset.target;
     if (isNaN(target)) return;
     let current = 0;
     const step = Math.max(1, Math.ceil(target / 40));
     const timer = setInterval(() => {
       current = Math.min(current + step, target);
-      el.textContent = current;
+      el.textContent = current >= 1000 ? current.toLocaleString() : current;
       if(current >= target) clearInterval(timer);
     }, 30);
   });
@@ -211,7 +383,7 @@ function refreshStatsFromJobs() {
   const jobCount = allJobs.length;
   const orgCount = new Set(allJobs.map(j => j.org)).size;
   const cityCount = new Set(allJobs.flatMap(j => j.city.split('/').map(c => c.trim()))).size;
-  animateStats({ jobs: jobCount, orgs: orgCount, cities: cityCount, hours: 24 });
+  animateStats({ jobs: jobCount, orgs: orgCount, cities: cityCount, hours: 24, users: 10000 });
 }
 
 // ============================================================
@@ -220,16 +392,61 @@ function refreshStatsFromJobs() {
 function renderSchemes() {
   const list = document.getElementById('schemesList');
   if (!list) return;
-  list.innerHTML = SCHEMES_DATA.map(s => `
-    <div class="scheme-item">
-      <div class="scheme-icon">${s.icon}</div>
-      <div>
-        <div class="scheme-title">${s.title}</div>
-        <div class="scheme-desc">${s.desc}</div>
-        <span class="scheme-badge">${s.badge}</span>
+  list.innerHTML = SCHEMES_DATA.map((s, i) => {
+    const isOpen = openSchemeIndex === i;
+
+    return `
+      <div class="scheme-accordion ${isOpen ? 'open' : ''}" data-index="${i}">
+        <button class="scheme-accordion-header" onclick="toggleScheme(${i})" aria-expanded="${isOpen}">
+          <div class="scheme-header-left">
+            <span class="scheme-icon">${s.icon}</span>
+            <div>
+              <div class="scheme-title">${escapeHtml(s.title)}</div>
+              <div class="scheme-desc">${escapeHtml(s.desc)}</div>
+              <span class="scheme-badge">${escapeHtml(s.badge)}</span>
+            </div>
+          </div>
+          <span class="scheme-details-btn">${isOpen ? 'Close' : 'Details'}</span>
+        </button>
+        <div class="scheme-accordion-body">
+          <div class="scheme-urdu-title">${escapeHtml(s.urduTitle || '')}</div>
+          <p class="scheme-details">${escapeHtml(s.details)}</p>
+
+          <div class="scheme-details-grid">
+            <div class="scheme-detail-row">
+              <span class="scheme-detail-label">📋 Scheme Name:</span>
+              <span class="scheme-detail-value">${escapeHtml(s.title)} (${escapeHtml(s.urduTitle || '')})</span>
+            </div>
+            <div class="scheme-detail-row">
+              <span class="scheme-detail-label">🎓 Eligibility Criteria:</span>
+              <span class="scheme-detail-value">${escapeHtml(s.eligibility || 'All Pakistani citizens meeting general eligibility criteria')}</span>
+            </div>
+            <div class="scheme-detail-row">
+              <span class="scheme-detail-label">📂 Required Documents:</span>
+              <span class="scheme-detail-value">Original CNIC/B-Form, Domicile certificate, Educational documents, Passport size photographs, and relevant application files.</span>
+            </div>
+            <div class="scheme-detail-row">
+              <span class="scheme-detail-label">📅 Last Date:</span>
+              <span class="scheme-detail-value">${s.badge === 'Open' || s.badge === 'Active' || s.badge === 'New' ? 'Ongoing / Open (Apply online as soon as possible)' : 'Closed / Check official notification'}</span>
+            </div>
+            <div class="scheme-detail-row">
+              <span class="scheme-detail-label">💻 Online Apply:</span>
+              <span class="scheme-detail-value">
+                ${s.applyLink && s.applyLink !== '#'
+                  ? `<a href="${escapeHtml(s.applyLink)}" target="_blank" rel="noopener" class="scheme-inline-link">Click Here to Apply Online →</a>`
+                  : 'Apply directly via designated official banks, NAPHDA portal, or the respective department website.'}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
+}
+
+function toggleScheme(index) {
+  openSchemeIndex = openSchemeIndex === index ? -1 : index;
+  renderSchemes();
 }
 
 // ============================================================
@@ -281,6 +498,40 @@ function filterTag(tag) {
   if (mainContent) mainContent.scrollIntoView({ behavior: 'smooth' });
 }
 
+function matchesExperience(job, expFilter) {
+  if (!expFilter) return true;
+  const text = `${job.title} ${job.org} ${job.edu} ${job.desc} ${job.experience || ''}`.toLowerCase();
+
+  switch (expFilter) {
+    case 'no-experience':
+      return /no experience|fresh|matric|intermediate|fresher|0 year|without experience|trainee|entry.?level|apprentice/.test(text)
+        || job.experience === 'no-experience'
+        || (!/year|experience|2\+|3\+|senior|manager/.test(text) && /matric|intermediate|diploma|dae/.test(text));
+    case 'less-experience':
+      return /less experience|1 year|2 year|0-2|fresh graduate|junior|assistant/.test(text)
+        || job.experience === 'less-experience'
+        || /graduation|b\.?a|b\.?sc|b\.?com/.test(text);
+    case 'education':
+      return /teacher|lecturer|education|school|college|university|ese|pst|sst|b\.?ed|m\.?ed/.test(text)
+        || job.experience === 'education'
+        || job.category === 'Education';
+    case 'diploma':
+      return /diploma|dae|computer course|6 month|3 month|it course|citi|pitb|digiskills|vocational|technical course|computer operator/.test(text)
+        || job.experience === 'diploma';
+    default:
+      return true;
+  }
+}
+
+function filterExperience(exp) {
+  activeExperience = activeExperience === exp ? '' : exp;
+  document.querySelectorAll('.exp-filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.exp === activeExperience);
+  });
+  applyFilters();
+  document.getElementById('jobs-section')?.scrollIntoView({ behavior: 'smooth' });
+}
+
 function applyFilters() {
   const cityEl = document.getElementById('filterCity');
   const orgEl = document.getElementById('filterOrg');
@@ -297,7 +548,8 @@ function applyFilters() {
     const matchCity = !city || j.city.toLowerCase().includes(city);
     const matchOrg = !org || j.category.toLowerCase().includes(org) || j.org.toLowerCase().includes(org);
     const matchEdu = !edu || j.edu.toLowerCase().includes(edu);
-    return matchSearch && matchCat && matchCity && matchOrg && matchEdu;
+    const matchExp = matchesExperience(j, activeExperience);
+    return matchSearch && matchCat && matchCity && matchOrg && matchEdu && matchExp;
   });
 
   displayedCount = PER_PAGE;
@@ -309,6 +561,7 @@ function applyFilters() {
 function clearFilters() {
   activeSearch = '';
   activeCategory = '';
+  activeExperience = '';
   
   const searchInput = document.getElementById('searchInput');
   const cityEl = document.getElementById('filterCity');
@@ -323,6 +576,8 @@ function clearFilters() {
   if (eduEl) eduEl.value = '';
   if (heading) heading.textContent = 'Latest Jobs – June 2026';
   if (noResEl) noResEl.style.display = 'none';
+
+  document.querySelectorAll('.exp-filter-btn').forEach(btn => btn.classList.remove('active'));
   
   filteredJobs = [...allJobs];
   displayedCount = PER_PAGE;
@@ -338,6 +593,9 @@ function renderJobs() {
   const slice = filteredJobs.slice(0, displayedCount);
   grid.innerHTML = slice.map(j => jobCardHTML(j)).join('');
   
+  const noResEl = document.getElementById('noResults');
+  if (noResEl) noResEl.style.display = filteredJobs.length ? 'none' : 'block';
+
   const loadMoreWrap = document.getElementById('loadMoreWrap');
   if (loadMoreWrap) {
     loadMoreWrap.style.display = filteredJobs.length > displayedCount ? 'block' : 'none';
@@ -346,22 +604,28 @@ function renderJobs() {
 
 function jobCardHTML(j) {
   const educationTag = j.edu ? j.edu.split('/')[0].trim() : 'N/A';
+  const urgency = getDeadlineUrgency(j.deadline);
+  const urgencyClass = cardUrgencyClass(urgency);
+
   return `
-    <div class="job-card ${j.isNew ? 'new-badge' : ''}" onclick="openModal(${j.id})">
-      <div class="job-org">${j.org}</div>
-      <div class="job-title">${j.title}</div>
+    <div class="job-card ${j.isNew ? 'new-badge' : ''} ${urgencyClass}" onclick="openModal(${j.id})">
+      ${['today', 'tomorrow', 'urgent'].includes(urgency.level) ? `<div class="job-urgent-strip">${deadlineBadgeHTML(urgency)}</div>` : ''}
+      <div class="job-org">${escapeHtml(j.org)}</div>
+      <div class="job-title">${escapeHtml(j.title)}</div>
       <div class="job-meta">
-        <div class="job-meta-item"><span class="icon">📍</span>${j.city}</div>
-        <div class="job-meta-item"><span class="icon">🎓</span>${j.edu}</div>
-        <div class="job-meta-item"><span class="icon">👥</span>${j.vacancies} Vacancies</div>
+        <div class="job-meta-item"><span class="icon">📍</span>${escapeHtml(j.city)}</div>
+        <div class="job-meta-item"><span class="icon">🎓</span>${escapeHtml(j.edu)}</div>
+        <div class="job-meta-item"><span class="icon">👥</span>${escapeHtml(j.vacancies)} Vacancies</div>
       </div>
       <div class="job-tags">
-        <span class="job-tag">${j.category}</span>
-        <span class="job-tag edu">${educationTag}</span>
+        <span class="job-tag">${escapeHtml(j.category)}</span>
+        <span class="job-tag edu">${escapeHtml(educationTag)}</span>
       </div>
-      <div class="job-deadline">⏰ Last Date: ${j.deadline}</div>
+      <div class="job-deadline-row">
+        ${deadlineBadgeHTML(urgency)}
+      </div>
       <div class="job-footer">
-        <button class="apply-btn" onclick="event.stopPropagation();window.open('${j.applyLink}','_blank')">Apply Now →</button>
+        <button class="apply-btn details-card-btn" onclick="event.stopPropagation();openModal(${j.id})">📋 Details</button>
       </div>
     </div>
   `;
@@ -387,8 +651,29 @@ function escapeHtml(str) {
 function normalizeJob(j) {
   const org = j.org || 'Department';
   const deadline = j.deadline || 'See advertisement';
+  
+  // Format experience value nicely
+  let expVal = j.experience || '';
+  if (expVal === 'no-experience') {
+    expVal = 'Fresh / No Experience';
+  } else if (expVal === 'less-experience') {
+    expVal = 'Less Experience';
+  } else if (expVal === 'education') {
+    expVal = 'Education Sector / Teaching Experience';
+  } else if (expVal === 'diploma') {
+    expVal = 'Diploma / Vocational Course';
+  } else if (!expVal) {
+    const text = `${j.title} ${j.org} ${j.edu} ${j.desc || ''}`.toLowerCase();
+    if (/no experience|fresh|matric|intermediate|fresher|0 year|without experience|trainee/i.test(text)) {
+      expVal = 'Fresh / No Experience Required';
+    } else {
+      expVal = 'As per official advertisement';
+    }
+  }
+
   return {
     ...j,
+    experienceFormatted: expVal,
     postName: j.postName || 'Multiple Posts',
     gender: j.gender || 'Male & Female',
     ageLimit: j.ageLimit || 'As per official advertisement',
@@ -407,9 +692,11 @@ function formatMultiline(text) {
 
 function buildModalHTML(raw) {
   const j = normalizeJob(raw);
+  const urgency = getDeadlineUrgency(j.deadline);
   const facts = [
     ['Post Name', j.postName || j.title],
     ['Gender', j.gender],
+    ['Experience', j.experienceFormatted],
     ['Department', j.org],
     ['Education', j.edu],
     ['Age Limit', j.ageLimit],
@@ -442,8 +729,8 @@ function buildModalHTML(raw) {
       <h2 class="modal-title">${escapeHtml(j.title)}</h2>
       <div class="modal-badges">
         ${j.isNew ? '<span class="modal-badge urgent">🔴 NEW</span>' : ''}
+        ${['today', 'tomorrow', 'urgent', 'soon'].includes(urgency.level) ? `<span class="modal-badge urgent deadline-flash">${escapeHtml(urgency.label)}</span>` : `<span class="modal-badge">⏰ Last Date: ${escapeHtml(j.deadline)}</span>`}
         <span class="modal-badge">📍 ${escapeHtml(j.city)}</span>
-        <span class="modal-badge">⏰ Last Date: ${escapeHtml(j.deadline)}</span>
       </div>
     </div>
 
@@ -522,25 +809,12 @@ function setupScrollTop() {
 // GOOGLE SHEETS INTEGRATION
 // ============================================================
 async function tryGoogleSheet() {
-  const dot = document.getElementById('statusDot');
-  const txt = document.getElementById('statusText');
-  const link = document.getElementById('sheetsLink');
-
   if(!SHEET_ID || SHEET_ID === 'YOUR_GOOGLE_SHEET_ID_HERE') {
-    if (dot) dot.className = 'status-dot';
-    if (txt) txt.textContent = 'Using built-in jobs — connect Google Sheet (see HOW-TO-UPDATE-JOBS.txt)';
-    if (link) link.href = 'admin.html';
-    if (link) link.textContent = 'Open Job Admin Panel →';
     refreshStatsFromJobs();
     return;
   }
 
-  if (link) link.href = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit`;
-
   try {
-    if (dot) dot.className = 'status-dot';
-    if (txt) txt.textContent = 'Connecting to Google Sheet…';
-    
     const res = await fetch(SHEET_URL);
     if(!res.ok) throw new Error('Fetch status error');
     
@@ -555,14 +829,10 @@ async function tryGoogleSheet() {
       renderJobs();
       startTicker();
       refreshStatsFromJobs();
-      if (dot) dot.className = 'status-dot connected';
-      if (txt) txt.textContent = `Live — ${jobs.length} jobs from Google Sheet`;
     } else {
       throw new Error('No clean records returned');
     }
   } catch(e) {
-    if (dot) dot.className = 'status-dot error';
-    if (txt) txt.textContent = 'Sheet not reachable — showing built-in jobs';
     refreshStatsFromJobs();
     console.warn("Sheet fetch failed, using built-in jobs: ", e.message);
   }
@@ -615,6 +885,7 @@ function parseSheetCSV(csv) {
       howToApply:      clean[18] || '',
       importantPoints: clean[19] || '',
       adImage:         clean[20] || '',
+      experience:      clean[21] || '',
     };
   }).filter(j => j.title);
 }
@@ -638,15 +909,15 @@ function parseSheetCSV(csv) {
   });
 
   document.addEventListener('mouseover', e => {
-    const interactive = e.target.closest('a, button, .job-card, .cat-card, .scheme-item, input, select');
+    const interactive = e.target.closest('a, button, .job-card, .cat-card, .scheme-accordion-header, input, select');
     ring.classList.toggle('hovering', !!interactive);
   });
 
   function animateCursor() {
-    rx += (mx - rx) * 0.18;
-    ry += (my - ry) * 0.18;
-    gx += (mx - gx) * 0.08;
-    gy += (my - gy) * 0.08;
+    rx += (mx - rx) * 0.35;
+    ry += (my - ry) * 0.35;
+    gx += (mx - gx) * 0.15;
+    gy += (my - gy) * 0.15;
     ring.style.left = rx + 'px';
     ring.style.top  = ry + 'px';
     glow.style.left = gx + 'px';

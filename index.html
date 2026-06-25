@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>National Jobs Alert – Latest Govt & Private Jobs in Pakistan 2026</title>
 <meta name="description" content="National Jobs Alert – Pakistan's trusted source for latest Government, Private, Army, Navy, PPSC, FPSC, NTS jobs updated daily.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,8 +15,8 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 
-<!-- WHATSAPP WELCOME POPUP (shown on every page load) -->
-<div class="wa-popup-overlay" id="waPopupOverlay">
+<!-- WHATSAPP WELCOME POPUP -->
+<div class="wa-popup-overlay hidden" id="waPopupOverlay">
   <div class="wa-popup" id="waPopup">
     <button class="wa-popup-close" onclick="closeWaPopup()">✕</button>
     <div class="wa-popup-header">
@@ -25,7 +25,6 @@
       <p>Get daily job alerts directly on WhatsApp — 100% Free!</p>
     </div>
     <div class="wa-popup-qr">
-      <!-- QR code image — replace src with your actual QR code image -->
       <div class="qr-placeholder">
         <div class="qr-inner">
           <img src="your-qr-code.png" width="150" height="150" alt="WhatsApp QR Code" style="border-radius:8px;">
@@ -52,6 +51,23 @@
       <span class="ticker-wrap"><span class="ticker" id="ticker">Loading latest jobs...</span></span>
     </div>
     <div class="topbar-right">
+      <div class="get-in-touch">
+        <button class="get-in-touch-btn" id="getInTouchBtn" aria-expanded="false">Get in Touch ▾</button>
+        <div class="get-in-touch-dropdown" id="getInTouchDropdown">
+          <a href="https://wa.me/923204503564" target="_blank" rel="noopener" class="contact-item">
+            <span class="contact-icon wa">📱</span>
+            <span>0320-4503564</span>
+          </a>
+          <a href="https://wa.me/923263415276" target="_blank" rel="noopener" class="contact-item">
+            <span class="contact-icon wa">📱</span>
+            <span>0326-3415276</span>
+          </a>
+          <a href="mailto:nationalcomputers64@gmail.com" class="contact-item">
+            <span class="contact-icon email">✉️</span>
+            <span>nationalcomputers64@gmail.com</span>
+          </a>
+        </div>
+      </div>
       <a href="https://whatsapp.com/channel/0029Vb8PW9dEVccDqgGfDg2w" target="_blank" rel="noopener" class="social-btn whatsapp">WhatsApp</a>
       <a href="https://facebook.com/yourpagename" target="_blank" rel="noopener" class="social-btn facebook">Facebook</a>
       <a href="https://www.instagram.com/national_jobs_alert?igsh=cDI0bWF1amVzeXU1" target="_blank" rel="noopener" class="social-btn instagram">Instagram</a>
@@ -64,7 +80,8 @@
 <header class="header">
   <div class="container header-inner">
     <a href="index.html" class="logo">
-      <div class="logo-icon">NJA</div>
+      <img src="png or logos/logo.png" alt="National Jobs Alert" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-icon" style="display:none">NJA</div>
       <div class="logo-text">
         <span class="logo-main">National Jobs Alert</span>
         <span class="logo-sub">Pakistan's Trusted Job Portal</span>
@@ -73,34 +90,72 @@
     <button class="mobile-menu-btn" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
     <nav class="nav" id="mainNav">
       <a href="index.html" class="nav-link active">Home</a>
+      <a href="#jobs-section" class="nav-link">Jobs</a>
+      <a href="#schemes" class="nav-link">Govt Schemes</a>
       <a href="#govt" class="nav-link" onclick="filterCat('Government');return false;">Govt Jobs</a>
       <a href="#private" class="nav-link" onclick="filterCat('Private');return false;">Private Jobs</a>
       <a href="#defense" class="nav-link" onclick="filterCat('Army');return false;">Defence</a>
-      <a href="#schemes" class="nav-link">Schemes</a>
-      <a href="#results" class="nav-link">Results</a>
     </nav>
   </div>
 </header>
 
-<!-- HERO SEARCH -->
-<section class="hero">
+<!-- HERO — reference-style split layout -->
+<section class="hero hero-split">
   <div class="hero-bg"></div>
+  <div class="hero-shapes"></div>
   <div class="hero-particles" id="heroParticles"></div>
-  <div class="container hero-inner">
-    <div class="hero-badge">🔴 LIVE — Jobs Updated Daily</div>
-    <h1 class="hero-title">Find Your Dream Job<br><span>in Pakistan</span></h1>
-    <p class="hero-subtitle">Government • Private • Army • Navy • PPSC • FPSC • NTS — All in one place</p>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search jobs by title, city, organization…" autocomplete="off">
-      <button class="search-btn" onclick="doSearch()">🔍 Search Jobs</button>
+  <div class="container hero-split-inner">
+    <div class="hero-left">
+      <div class="hero-badge">🔴 LIVE — Jobs Updated Daily</div>
+      <h1 class="hero-title">Your Gateway to<br><span>National Jobs Alert</span></h1>
+      <p class="hero-subtitle">Discover verified Government & Private job opportunities across Pakistan. Build your career with transparency, trust, and daily updates.</p>
+      <button class="hero-cta-btn" onclick="document.getElementById('jobs-section').scrollIntoView({behavior:'smooth'})">
+        🔍 Start Job Search →
+      </button>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-stat-key="jobs" data-target="100">0</span><span>+</span>
+          <span class="hero-stat-label">Active Jobs</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-stat-key="orgs" data-target="50">0</span><span>+</span>
+          <span class="hero-stat-label">Departments</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-stat-key="users" data-target="10000">0</span><span>+</span>
+          <span class="hero-stat-label">Happy Users</span>
+        </div>
+      </div>
     </div>
-    <div class="quick-tags">
-      <span onclick="filterTag('Government')">Govt Jobs</span>
-      <span onclick="filterTag('Army')">Pak Army</span>
-      <span onclick="filterTag('Navy')">Pakistan Navy</span>
-      <span onclick="filterTag('PPSC')">PPSC</span>
-      <span onclick="filterTag('FPSC')">FPSC</span>
-      <span onclick="filterTag('NTS')">NTS</span>
+    <div class="hero-right">
+      <div class="hero-features-container">
+        <div class="hero-features-list">
+          <div class="hero-feature-card-small">
+            <span class="hero-feature-icon-small">🛡️</span>
+            <span class="hero-feature-title-small">Verified Jobs</span>
+          </div>
+          <div class="hero-feature-card-small">
+            <span class="hero-feature-icon-small">🔔</span>
+            <span class="hero-feature-title-small">Instant Alerts</span>
+          </div>
+          <div class="hero-feature-card-small">
+            <span class="hero-feature-icon-small">🎯</span>
+            <span class="hero-feature-title-small">Fresh Graduate Jobs</span>
+          </div>
+          <div class="hero-feature-card-small">
+            <span class="hero-feature-icon-small">🏅</span>
+            <span class="hero-feature-title-small">Career Growth</span>
+          </div>
+        </div>
+        
+        <a href="Typing Test.html" class="hero-typing-cta-card">
+          <div class="cta-badge">⚡ ONLINE TEST</div>
+          <div class="cta-icon">⌨️</div>
+          <h3 class="cta-title">Typing Speed Test</h3>
+          <p class="cta-desc">Test your typing speed in Urdu & English. Essential for Junior Clerk and Data Entry govt jobs!</p>
+          <span class="cta-btn">Start Test Now →</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -176,119 +231,100 @@
   </div>
 </section>
 
-<!-- ========================================================
-     MAIN TWO-COLUMN SECTION: JOBS (left) + SCHEMES (right)
-     ======================================================== -->
+<!-- MAIN CONTENT -->
 <main class="main-content">
-  <div class="container">
 
-    <!-- SECTION LABELS ROW -->
-    <div class="dual-section-header">
-      <div class="dual-section-label jobs-label">
-        <span class="dual-label-icon">💼</span>
+  <!-- JOBS SECTION -->
+  <section class="jobs-section" id="jobs-section">
+    <div class="container">
+      <div class="section-header-block">
+        <div class="section-header-icon">💼</div>
         <div>
-          <h2 class="dual-label-title">Latest Jobs</h2>
-          <p class="dual-label-sub">Browse & apply to current openings — updated daily</p>
-        </div>
-      </div>
-      <div class="dual-section-label schemes-label">
-        <span class="dual-label-icon">🎁</span>
-        <div>
-          <h2 class="dual-label-title">Government Schemes</h2>
-          <p class="dual-label-sub">Free programmes & benefits for Pakistani citizens</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- TWO EQUAL HALVES: JOBS (left) + SCHEMES (right) -->
-    <div class="main-grid split-layout">
-
-      <!-- LEFT HALF: JOBS -->
-      <div class="split-panel jobs-panel">
-        <div class="section-header">
           <h2 class="section-title" id="jobsHeading">Latest Jobs – June 2026</h2>
-          <div class="filter-row">
-            <select id="filterCity" onchange="applyFilters()">
-              <option value="">All Cities</option>
-              <option>Lahore</option><option>Islamabad</option><option>Karachi</option>
-              <option>Rawalpindi</option><option>Faisalabad</option><option>Peshawar</option>
-              <option>Multan</option><option>Quetta</option><option>Sialkot</option>
-              <option>All Over Pakistan</option>
-            </select>
-            <select id="filterOrg" onchange="applyFilters()">
-              <option value="">All Organizations</option>
-              <option>Government</option><option>Army</option><option>Navy</option>
-              <option>PAF</option><option>PPSC</option><option>FPSC</option>
-              <option>NTS</option><option>Private</option>
-            </select>
-            <select id="filterEdu" onchange="applyFilters()">
-              <option value="">All Education</option>
-              <option>Matric</option><option>Intermediate</option>
-              <option>Graduation</option><option>Masters</option>
-            </select>
-            <button class="clear-btn" onclick="clearFilters()">✕ Clear</button>
-          </div>
-        </div>
-        <div class="jobs-grid jobs-grid-split" id="jobsGrid"></div>
-        <div class="no-results" id="noResults" style="display:none">
-          <div class="no-results-icon">🔍</div>
-          <h3>No jobs found</h3>
-          <p>Try different keywords or clear the filters.</p>
-          <button onclick="clearFilters()">Clear Filters</button>
-        </div>
-        <div class="load-more-wrap" id="loadMoreWrap">
-          <button class="load-more-btn" onclick="loadMore()">Load More Jobs ↓</button>
+          <p class="section-subtitle">Browse & apply to current openings — updated daily</p>
         </div>
       </div>
 
-      <!-- RIGHT HALF: SCHEMES -->
-      <div class="split-panel schemes-panel" id="schemes">
-        <div class="schemes-panel-inner">
-          <p class="schemes-intro">Free government programmes available for all Pakistani citizens. Click any scheme to learn more.</p>
-          <div class="schemes-list schemes-list-full" id="schemesList"></div>
+      <!-- HIGHLIGHTED EXPERIENCE FILTER -->
+      <div class="experience-filter-bar">
+        <div class="exp-filter-header">
+          <span class="exp-filter-star">⭐</span>
+          <span class="exp-filter-label">Quick Filters for Job Seekers</span>
+          <span class="exp-filter-hint">Most jobs for fresh candidates</span>
         </div>
+        <div class="exp-filter-buttons">
+          <button class="exp-filter-btn" data-exp="no-experience" onclick="filterExperience('no-experience')">🆕 No Experience</button>
+          <button class="exp-filter-btn" data-exp="less-experience" onclick="filterExperience('less-experience')">📈 Less Experience</button>
+          <button class="exp-filter-btn" data-exp="education" onclick="filterExperience('education')">🎓 Education Jobs</button>
+          <button class="exp-filter-btn" data-exp="diploma" onclick="filterExperience('diploma')">💻 Computer Diploma</button>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <input type="text" id="searchInput" placeholder="Search jobs by title, city, organization…" autocomplete="off" class="filter-search">
+        <select id="filterCity" onchange="applyFilters()">
+          <option value="">All Cities</option>
+          <option>Lahore</option><option>Islamabad</option><option>Karachi</option>
+          <option>Rawalpindi</option><option>Faisalabad</option><option>Peshawar</option>
+          <option>Multan</option><option>Quetta</option><option>Sialkot</option>
+          <option>All Over Pakistan</option>
+        </select>
+        <select id="filterOrg" onchange="applyFilters()">
+          <option value="">All Organizations</option>
+          <option>Government</option><option>Army</option><option>Navy</option>
+          <option>PAF</option><option>PPSC</option><option>FPSC</option>
+          <option>NTS</option><option>Private</option>
+        </select>
+        <select id="filterEdu" onchange="applyFilters()">
+          <option value="">All Education</option>
+          <option>Matric</option><option>Intermediate</option>
+          <option>Graduation</option><option>Masters</option>
+        </select>
+        <button class="search-btn-inline" onclick="doSearch()">🔍 Search</button>
+        <button class="clear-btn" onclick="clearFilters()">✕ Clear</button>
+      </div>
+
+      <div class="jobs-grid" id="jobsGrid"></div>
+      <div class="no-results" id="noResults" style="display:none">
+        <div class="no-results-icon">🔍</div>
+        <h3>No jobs found</h3>
+        <p>Try different keywords or clear the filters.</p>
+        <button onclick="clearFilters()">Clear Filters</button>
+      </div>
+      <div class="load-more-wrap" id="loadMoreWrap">
+        <button class="load-more-btn" onclick="loadMore()">Load More Jobs ↓</button>
       </div>
     </div>
+  </section>
 
-    <!-- EXTRA INFO ROW — nothing removed from original page -->
-    <div class="extras-row">
-      <div class="sidebar-card sheets-card">
-        <h3 class="sidebar-title">📊 Easy Daily Updates</h3>
-        <p class="extras-text">Update jobs in Google Sheets — no coding needed. Changes appear when visitors refresh.</p>
-        <div class="sheets-status">
-          <span class="status-dot" id="statusDot"></span>
-          <span id="statusText">Checking connection...</span>
+  <!-- GOVERNMENT SCHEMES SECTION -->
+  <section class="schemes-section" id="schemes">
+    <div class="container">
+      <div class="section-header-block schemes-header-block">
+        <div class="section-header-icon">🎁</div>
+        <div>
+          <h2 class="section-title">Government Schemes</h2>
+          <p class="section-subtitle">Free programmes & benefits for Pakistani citizens</p>
         </div>
-        <a href="admin.html" class="sheets-btn" style="margin-bottom:8px;">Open Job Admin Panel →</a>
-        <a href="https://docs.google.com/spreadsheets/d/1o7r2FVF5pvXFKKXa82yJKPZ7KyxcMCgMMtm86RR70hA/edit" class="sheets-btn" id="sheetsLink" target="_blank" rel="noopener" style="background:#fff;border:1px solid #0d7a3e;">Open Your Google Sheet ↗</a>
+        
       </div>
+      <div class="schemes-list" id="schemesList"></div>
+    </div>
+  </section>
 
-      <div class="sidebar-card">
-        <h3 class="sidebar-title">🔗 Quick Links</h3>
-        <div class="quick-links-list">
-          <a href="#" onclick="filterCat('PPSC');return false;">PPSC Jobs 2026</a>
-          <a href="#" onclick="filterCat('FPSC');return false;">FPSC Jobs 2026</a>
-          <a href="#" onclick="filterCat('NTS');return false;">NTS Jobs 2026</a>
-          <a href="#" onclick="filterCat('Army');return false;">Pak Army Jobs</a>
-          <a href="#" onclick="filterCat('Navy');return false;">Pak Navy Jobs</a>
-          <a href="#" onclick="filterCat('PAF');return false;">PAF Jobs</a>
-          <a href="#" onclick="filterTag('Lahore');return false;">Lahore Jobs</a>
-          <a href="#" onclick="filterTag('Karachi');return false;">Karachi Jobs</a>
-          <a href="#" onclick="filterTag('Islamabad');return false;">Islamabad Jobs</a>
-          <a href="#" onclick="filterTag('Railway');return false;">Railway Jobs</a>
-          <a href="#" onclick="filterTag('WAPDA');return false;">WAPDA Jobs</a>
-          <a href="#" onclick="filterTag('FIA');return false;">FIA Jobs</a>
-        </div>
-      </div>
-
+  <!-- GET JOB ALERTS -->
+  <section class="alerts-section">
+    <div class="container">
       <div class="sidebar-card alert-card">
         <h3 class="sidebar-title">🔔 Get Job Alerts</h3>
         <p class="extras-text extras-text-light">Subscribe to get new jobs delivered to WhatsApp or Email.</p>
         <input type="email" placeholder="Enter your email" class="alert-input">
         <button class="alert-btn">Subscribe Free</button>
+        <a href="https://whatsapp.com/channel/0029Vb8PW9dEVccDqgGfDg2w" target="_blank" rel="noopener" class="alert-wa-link">💬 Or Join WhatsApp Channel</a>
       </div>
     </div>
-  </div>
+  </section>
+
 </main>
 
 <!-- JOB DETAIL MODAL -->
@@ -303,13 +339,21 @@
 <footer class="footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <div class="footer-logo">National Jobs Alert</div>
+      <div class="footer-logo-wrap">
+        <img src="png or logos/logo.png" alt="National Jobs Alert" class="footer-logo-img" onerror="this.style.display='none'">
+        <div class="footer-logo">National Jobs Alert</div>
+      </div>
       <p>Pakistan's most trusted daily job portal. We list Government, Private, Defence and Scheme jobs updated 24/7.</p>
+      <div class="footer-contact">
+        <a href="https://wa.me/923204503564" target="_blank" rel="noopener">📱 0320-4503564</a>
+        <a href="https://wa.me/923263415276" target="_blank" rel="noopener">📱 0326-3415276</a>
+        <a href="mailto:nationalcomputers64@gmail.com">✉️ nationalcomputers64@gmail.com</a>
+      </div>
       <div class="footer-social">
-        <a href="https://whatsapp.com/channel/0029Vb8PW9dEVccDqgGfDg2w" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="https://facebook.com/yourpagename" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.instagram.com/national_jobs_alert?igsh=cDI0bWF1amVzeXU1" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://tiktok.com/@yourusername" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://whatsapp.com/channel/0029Vb8PW9dEVccDqgGfDg2w" target="_blank" rel="noopener" class="whatsapp">WhatsApp</a>
+        <a href="https://facebook.com/yourpagename" target="_blank" rel="noopener" class="facebook">Facebook</a>
+        <a href="https://www.instagram.com/national_jobs_alert?igsh=cDI0bWF1amVzeXU1" target="_blank" rel="noopener" class="instagram">Instagram</a>
+        <a href="https://tiktok.com/@yourusername" target="_blank" rel="noopener" class="tiktok">TikTok</a>
       </div>
     </div>
     <div class="footer-links">
@@ -336,13 +380,10 @@
     </div>
     <div class="footer-links">
       <h4>Resources</h4>
+      <a href="#schemes">Government Schemes</a>
       <a href="#">How to Apply</a>
       <a href="#">CV Builder Tips</a>
-      <a href="#">Interview Guide</a>
-      <a href="#">Roll No Slip</a>
-      <a href="#">Test Results</a>
       <a href="#">About Us</a>
-      <a href="#">Contact Us</a>
       <a href="#">Privacy Policy</a>
     </div>
   </div>
@@ -355,7 +396,6 @@
 
 <!-- FLOATING BUTTONS -->
 <div class="floating-buttons">
-  <!-- WhatsApp button now opens the popup instead of directly going to link -->
   <button class="float-btn whatsapp-float" title="Join WhatsApp Channel" onclick="openWaPopup()">💬</button>
   <button class="float-btn scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 </div>
